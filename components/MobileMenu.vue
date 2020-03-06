@@ -4,11 +4,7 @@
     <AppHamburger />
     <div class="mmenu__wrapper">
       <ul class="mmenu__list">
-        <li
-          v-for="(item, i) in this.$t('nav')"
-          :key="item.i"
-          class="mmenu__item"
-        >
+        <li v-for="(item, i) in this.$t('nav')" :key="item.i" class="mmenu__item">
           <a class="mmenu__link" href="#" @click.prevent="scrollTo(i)">{{
             item
           }}</a>
@@ -25,18 +21,18 @@ import { TimelineMax, TweenMax, Power0 } from "gsap"
 import ScrollToPlugin from "gsap/umd/ScrollToPlugin.js"
 
 export default {
-  data() {
+  data () {
     return {
       done: null
     }
   },
   computed: {
-    open() {
+    open () {
       return this.$store.state.toggleSidebar
     }
   },
   watch: {
-    open: function(open) {
+    open: function (open) {
       const self = this
       const x = open ? 0 : -115
       const y = open ? 0 : 115
@@ -81,7 +77,7 @@ export default {
         )
     }
   },
-  mounted() {
+  mounted () {
     TweenMax.set(".mmenu", {
       visibility: "visible"
     })
@@ -93,9 +89,8 @@ export default {
     })
   },
   methods: {
-    scrollTo(i) {
+    scrollTo (i) {
       const f = ScrollToPlugin
-      console.log(f)
 
       this.$store.dispatch("toggleSidebar")
       TweenMax.to(window, 1, {
@@ -105,7 +100,7 @@ export default {
         ease: Power0.easeNone
       })
     },
-    toggleClass() {
+    toggleClass () {
       const body = document.querySelector("body")
       body.classList.toggle("mmenu-open")
     }
