@@ -1,0 +1,313 @@
+// тк мы к ним обращаемся везде ниже
+@import "utils/fonts";
+@import "utils/vars";
+@import "utils/reset";
+@import "mixins/mixins";
+
+html,
+body {
+  font-size: $mainFontSize;
+
+  @media only screen and (min-width: 1024px) {
+    font-size: 16px;
+  }
+}
+
+html {
+  line-height: $mainLineHeight;
+  color: $mainFontColor;
+  height: 100%;
+
+  @media screen and (max-width: $desktopWidth) {
+    font-size: 16px;
+  }
+
+  @media screen and (max-width: $tableWidth) {
+    font-size: 15px;
+  }
+
+  @media screen and (max-width: $phoneWidth) {
+    font-size: 14px;
+  }
+}
+
+body {
+  font-family: $mainFont;
+  font-weight: $mainFontWeight;
+  letter-spacing: $mainLetterSpacing;
+  scroll-behavior: smooth;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-width: 320px;
+  height: 100%;
+  font-weight: 400;
+  background-color: var(--bg-color);
+  overflow-x: hidden;
+  text-rendering: optimizeSpeed;
+}
+
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+input,
+textarea,
+select,
+button {
+  border: 1px solid $border-base;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul,
+li {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+section,
+.section {
+  position: relative;
+  padding: 40px 0;
+
+  @media screen and (max-width: $desktopWidth) {
+    padding: 36px 0;
+  }
+
+  @media screen and (max-width: $desktopWidth) {
+    padding: 28px 0;
+  }
+
+  @media screen and (max-width: $desktopWidth) {
+    padding: 20px 0;
+  }
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0 auto;
+}
+
+.wrapper-content {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  &.wrapper-content--fixed {
+    margin-top: 80px;
+  }
+}
+
+.container {
+  width: 100%;
+  flex: 0 0 auto;
+  position: relative;
+  margin: 0 auto;
+  padding: 0 2rem;
+  max-width: 1600px;
+
+  @media screen and (max-width: $smDesktopWidth) {
+    padding: 0 1rem;
+  }
+}
+
+.letter {
+  display: inline-block;
+  min-width: 0.3em;
+  overflow-x: hidden;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+.tag {
+  display: inline-block;
+  text-transform: lowercase;
+  color: var(--color-pseudo-element);
+  font-size: 10px;
+  position: absolute;
+  font-weight: 400;
+  will-change: opacity;
+  backface-visibility: hidden;
+
+  @include xlg {
+    display: none;
+  }
+
+  &--top,
+  &--bottom,
+  &-body--top,
+  &-body--bottom,
+  &-text--top,
+  &-a--top,
+  &-a--bottom,
+  &-form--bottom,
+  &-form--top {
+    position: absolute;
+    left: 0;
+    font-style: italic;
+  }
+
+  &--top {
+    top: 0;
+    transform: translate(-15px, -45px);
+  }
+
+  &--bottom {
+    bottom: 0;
+    transform: translate(-15px, 45px);
+  }
+
+  &-a--top {
+    top: 0;
+    transform: translate(-15px, -30px);
+  }
+
+  &-a--bottom {
+    bottom: 0;
+    transform: translate(-15px, 30px);
+  }
+
+  &-body--top {
+    top: 0;
+    transform: translate(25px, 5px);
+  }
+
+  &-body--bottom {
+    bottom: 0;
+    transform: translate(25px, -5px);
+  }
+
+  &-text--top {
+    top: 0;
+    transform: translate(-15px, -10px);
+  }
+
+  &-text--bottom {
+    bottom: 0;
+    transform: translate(-15px, 10px);
+  }
+
+  &-form--top {
+    top: 0;
+    transform: translate(-15px, -15px);
+  }
+
+  &-form--bottom {
+    bottom: 0;
+    transform: translate(-15px, 25px);
+  }
+}
+
+.tag-nav {
+  display: inline-block;
+  text-transform: lowercase;
+  font-style: italic;
+  color: var(--color-pseudo-element);
+  font-size: 10px !important;
+  position: absolute;
+  font-weight: 400;
+  will-change: opacity;
+  backface-visibility: hidden;
+
+  @include xlg {
+    display: none;
+  }
+
+  &--top,
+  &--bottom {
+    position: absolute;
+    left: 0;
+  }
+
+  &--top {
+    top: 0;
+    transform: translate(-15px, -10px);
+  }
+
+  &--bottom {
+    bottom: 0;
+    transform: translate(-15px, 15px);
+  }
+}
+
+.mb2 {
+  margin-bottom: 2rem;
+}
+
+.mauto {
+  margin: 0 auto;
+
+  @include mxl {
+    margin: initial;
+  }
+}
+
+.text-zone {
+  align-self: flex-start;
+  width: 58%;
+  line-height: 33px;
+
+  @include xlg {
+    margin: initial;
+    width: 100%;
+    padding: 0;
+  }
+
+  &>* {
+    margin-bottom: 4rem;
+
+    @include md {
+      margin-bottom: 2rem;
+    }
+
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__text {
+    position: relative;
+    color: var(--white);
+    font-weight: 400;
+    padding: 1rem;
+    padding-left: 0;
+    font-size: 1rem;
+    width: 90%;
+
+    @include xlg {
+      width: 100%;
+    }
+
+    @include xlg {
+      padding: 0;
+    }
+  }
+
+  &__text-container {
+    position: relative;
+  }
+}
+
+@import "./common.scss";

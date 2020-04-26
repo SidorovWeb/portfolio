@@ -1,0 +1,23 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /auth/
+Disallow: /*.pdf
+Disallow: /*.doc
+Disallow: /*?*
+Sitemap: https://sidorovweb.ru/sitemap.xml
+
+User-agent: Googlebot
+Disallow: /admin/
+Disallow: /auth/
+Disallow: /*.pdf
+Disallow: /*.doc
+Disallow: /*?*
+
+User-agent: Yandex
+Disallow: /admin/
+Disallow: /auth/
+Disallow: /*.pdf
+Disallow: /*.doc
+Disallow: /*?*
+Host: https://sidorovweb.ru
+Sitemap: https://sidorovweb.ru/sitemap.xml
