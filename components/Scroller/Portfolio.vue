@@ -180,6 +180,9 @@ export default {
     position: relative;
     width: calc(50% - 15px);
     margin-right: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
     @include md {
       width: 100%;
@@ -201,7 +204,7 @@ export default {
   &__btn-wrapper {
     will-change: transform;
     backface-visibility: hidden;
-    overflow: hidden;
+
     @include xlg {
       left: 0;
       bottom: 0;
@@ -209,7 +212,7 @@ export default {
     }
   }
   &__btn {
-    padding: 7px 15px;
+    padding: 7px 5px;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -219,21 +222,22 @@ export default {
       display: inline-block;
       height: 18px;
       width: 18px;
-      fill: var(--main-red);
+      fill: var(--white);
       margin-left: 0.5rem;
       animation: arrowAnime 1.5s infinite;
     }
   }
-  &__link-wrapper {
-    overflow: hidden;
-  }
+
   &__link {
     display: inline-block;
-    text-align: left;
+    text-align: right;
     color: var(--white);
+    border-bottom: 2px solid var(--white);
   }
   &__svg-wrapper {
     background-color: var(--bg-color);
+    position: absolute;
+    left: -42px;
   }
 }
 

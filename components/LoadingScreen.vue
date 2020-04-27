@@ -24,7 +24,15 @@ import Splitter from "split-html-to-chars";
 
 export default {
   mounted() {
-    this.animLoadScreen();
+    if (this.firstScreen) {
+      this.animLoadScreen();
+    } else {
+      this.screenFirst();
+    }
+    console.log(this.firstScreen);
+  },
+  computed: {
+    ...mapState(["firstScreen"])
   },
   methods: {
     animLoadScreen() {
@@ -68,6 +76,7 @@ export default {
     },
     screenFirst() {
       this.$store.dispatch("setScreen", false);
+      this.$store.dispatch("setFirstScreen", false);
     },
     handleResize() {
       const vh = window.innerHeight * 0.01;

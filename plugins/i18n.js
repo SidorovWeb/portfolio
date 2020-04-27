@@ -24,7 +24,7 @@ export default ({ app }) => {
           "Я целеустремленный, увлеченный, самостоятельный и всегда развивающийся начинающий разработчик.Слежу за новостями на youtube-каналах. Читаю статьи на Хабре и Медиуме.Стремлюсь к полной занятости.",
         h2Portfolio1: "Мои",
         h2Portfolio2: "Работы",
-        portfolioBtn: "Посмотреть все работы",
+        portfolioBtn: "Нажмите для перехода к работам",
         h2Skills1: "Навыки и",
         h2Skills2: "опыт",
         skillsText:
@@ -68,7 +68,7 @@ export default ({ app }) => {
           "I am passionate and always developing starting developer from Moscow. I follow the news on youtube channels. I read articles on Habra and Medium. I aspire to full employment.",
         h2Portfolio1: "My",
         h2Portfolio2: "works",
-        portfolioBtn: "View all works",
+        portfolioBtn: "Click to go to work.",
         h2Skills1: "Skills &",
         h2Skills2: "Experience",
         skillsText:

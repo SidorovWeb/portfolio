@@ -111,7 +111,7 @@ export default {
         })
         .staggerFromTo(
           ".about__title .word",
-          0.8,
+          0.6,
           { yPercent: 115 },
           { delay: 0.2, yPercent: 0, ease: Expo.inOut },
           0.5

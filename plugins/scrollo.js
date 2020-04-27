@@ -48,16 +48,15 @@ const scrollo = function() {
   let contactsText = document.querySelectorAll(".contacts__text");
   let contactsForm = document.querySelectorAll(".contacts__form-wrapper");
   //social
-  // let cocialLink = document.querySelectorAll(".social__link");
-  // tag
   let tags = document.querySelectorAll(".tag");
+
   // TimelineMax
   // 	about
   let aboutTimeline = new TimelineMax({ paused: true });
   aboutTimeline
     .set(aboutTitleW, { yPercent: 115 })
     .set(aboutText, { autoAlpha: 0 })
-    .staggerTo(aboutTitleW, 0.8, { yPercent: 0, ease: Expo.inOut }, 0.5)
+    .staggerTo(aboutTitleW, 0.6, { yPercent: 0, ease: Expo.inOut }, 0.5)
     .to(aboutText, 0.7, { autoAlpha: 1, ease: Power2.inOut }, "about")
     .to(aboutImg, 0.7, { autoAlpha: 1, ease: Power2.inOut }, "about");
   // portfolio
@@ -65,29 +64,23 @@ const scrollo = function() {
   playPortfolio
     .set(portfolioBtn, { yPercent: 0, autoAlpha: 1 })
     .set(portfolioTitleW, { yPercent: 115 })
-    .set(portfolioImgWrapper, { autoAlpha: 0 })
-    .set(portfolioSvgWrapper, { xPercent: -500, autoAlpha: 0 })
-    .set(portfolioLink, { xPercent: 115, autoAlpha: 1 })
-    .staggerTo(portfolioTitleW, 0.8, { yPercent: 0, ease: Expo.inOut }, 0.5)
+    .set([portfolioImgWrapper, portfolioLink, portfolioSvgWrapper], {
+      autoAlpha: 0
+    })
+    .staggerTo(portfolioTitleW, 0.6, { yPercent: 0, ease: Expo.inOut }, 0.5)
     .to(
-      portfolioImgWrapper,
+      [portfolioImgWrapper, portfolioLink, portfolioSvgWrapper],
       0.7,
       { autoAlpha: 1, yPercent: 0, ease: Power2.inOut },
       "portfolio"
-    )
-    .to(
-      portfolioSvgWrapper,
-      0.7,
-      { xPercent: 0, autoAlpha: 1, ease: Power2.inOut },
-      "portfolio"
-    )
-    .to(portfolioLink, 0.7, { xPercent: 0, ease: Power2.inOut });
+    );
+
   // skills
   let playSkills = new TimelineMax({ paused: true });
   playSkills
     .set(skillsTitleW, { yPercent: 115 })
     .set([skillsTags, skillsText], { autoAlpha: 0 })
-    .staggerTo(skillsTitleW, 0.8, { yPercent: 0, ease: Expo.inOut }, 0.5)
+    .staggerTo(skillsTitleW, 0.6, { yPercent: 0, ease: Expo.inOut }, 0.5)
     .to([skillsTags, skillsText], 0.7, { autoAlpha: 1, ease: Power2.inOut });
 
   // contacts
@@ -95,7 +88,7 @@ const scrollo = function() {
   playcontacts
     .set(contactsTitleW, { yPercent: 115 })
     .set([contactsForm, contactsText], { autoAlpha: 0 })
-    .staggerTo(contactsTitleW, 0.8, { yPercent: 0, ease: Expo.inOut }, 0.5)
+    .staggerTo(contactsTitleW, 0.6, { yPercent: 0, ease: Expo.inOut }, 0.5)
     .to([contactsForm, contactsText], 0.7, {
       autoAlpha: 1,
       ease: Power2.inOut
@@ -236,7 +229,7 @@ const scrollo = function() {
       TweenMax.to(aboutImg, 0.7, { autoAlpha: 0, ease: Power2.inOut });
       TweenMax.staggerTo(
         aboutTitleW,
-        0.8,
+        0.6,
         { delay: 1, yPercent: 115, ease: Expo.inOut },
         0.5
       );
@@ -248,7 +241,7 @@ const scrollo = function() {
         onComplete: function() {
           TweenMax.staggerTo(
             portfolioTitleW,
-            0.8,
+            0.6,
             { yPercent: 115, ease: Expo.inOut },
             0.5
           );
@@ -262,7 +255,7 @@ const scrollo = function() {
       });
       TweenMax.staggerTo(
         skillsTitleW,
-        0.8,
+        0.6,
         { delay: 1, yPercent: 115, ease: Expo.inOut },
         0.5
       );
@@ -274,7 +267,7 @@ const scrollo = function() {
       });
       TweenMax.staggerTo(
         contactsTitleW,
-        0.8,
+        0.6,
         { delay: 1, yPercent: 115, ease: Expo.inOut },
         0.5
       );

@@ -6,6 +6,7 @@ export const state = () => ({
   token: null,
   start: false,
   screen: true,
+  firstScreen: true,
   toggleSidebar: false,
   continueRoute: true,
   message: null,
@@ -42,6 +43,9 @@ export const mutations = {
   },
   setScreen(state, screen) {
     state.screen = screen;
+  },
+  setFirstScreen(state, screen) {
+    state.firstScreen = screen;
   },
   setContinueRoute(state, continueRoute) {
     state.continueRoute = continueRoute;
@@ -147,6 +151,9 @@ export const actions = {
   },
   setScreen({ commit }, screen) {
     commit("setScreen", screen);
+  },
+  setFirstScreen({ commit }, screen) {
+    commit("setFirstScreen", screen);
   },
   setContinueRoute({ commit }, continueRoute) {
     commit("setContinueRoute", continueRoute);
