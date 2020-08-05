@@ -108,7 +108,7 @@ body:not(.admin-page) {
   cursor: none;
 
   @media screen and (max-width: 1024px) {
-    cursor: pointer;
+    cursor: auto;
   }
 }
 </style>

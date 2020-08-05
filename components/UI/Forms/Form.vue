@@ -86,7 +86,7 @@
         />
       </div>
       <!-- button -->
-      <AppButton class="form__btn">{{ this.$t("send") }}</AppButton>
+      <AppButton class="form__btn" btnClass="btnAccent">{{ this.$t("send") }}</AppButton>
     </form>
   </div>
 </template>
@@ -310,7 +310,8 @@ export default {
   &__btn {
     border-radius: 0;
     font-size: 1rem;
-    border-color: var(--home-color-text);
+    border-color: var(--main-red);
+    background-color: var(--main-red);
     font-weight: 700;
   }
 }
