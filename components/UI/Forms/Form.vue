@@ -1,11 +1,9 @@
 <template>
   <div>
     <form class="form" @submit.prevent="onSubmit">
-      <!-- Badges -->
-      <Badges new-class="tag tag-form--top" tag="form" />
       <!-- radio-line -->
       <div class="radio-line form__radio-line">
-        <span class="radio-line__text">{{ this.$t("send") }}: </span>
+        <span class="radio-line__text">{{ this.$t("send") }}:</span>
         <AppRadio
           id="form__check--email"
           type="radio"
@@ -15,9 +13,7 @@
           value="email"
           checked
           @click="onChange($event.target.value)"
-        >
-          Email
-        </AppRadio>
+        >Email</AppRadio>
         <AppRadio
           id="form__check--telegram"
           type="radio"
@@ -26,15 +22,11 @@
           new-class="radio-line__input"
           value="telegram"
           @click="onChange($event.target.value)"
-        >
-          Telegram
-        </AppRadio>
+        >Telegram</AppRadio>
       </div>
       <!-- form.name -->
       <div class="form__item" :class="{ errorInput: $v.form.name.$error }">
-        <p v-if="!$v.form.name.required" class="errorText">
-          {{ this.$t("required") }}
-        </p>
+        <p v-if="!$v.form.name.required" class="errorText">{{ this.$t("required") }}</p>
         <p v-if="!$v.form.name.minLength" class="errorText">
           {{ this.$t("errorTextName") }}
           {{ $v.form.name.$params.minLength.min }} !
@@ -49,14 +41,8 @@
         />
       </div>
       <!-- form.userName -->
-      <div
-        v-if="!form.check"
-        class="form__item"
-        :class="{ errorInput: $v.form.userName.$error }"
-      >
-        <p v-if="!$v.form.userName.required" class="errorText">
-          {{ this.$t("required") }}
-        </p>
+      <div v-if="!form.check" class="form__item" :class="{ errorInput: $v.form.userName.$error }">
+        <p v-if="!$v.form.userName.required" class="errorText">{{ this.$t("required") }}</p>
         <p v-if="!$v.form.userName.minLength" class="errorText">
           {{ this.$t("errorTextName") }}
           {{ $v.form.userName.$params.minLength.min }} !
@@ -71,17 +57,9 @@
         />
       </div>
       <!-- form.email -->
-      <div
-        v-if="form.check"
-        class="form__item"
-        :class="{ errorInput: $v.form.email.$error }"
-      >
-        <p v-if="!$v.form.email.required" class="errorText">
-          {{ this.$t("required") }}
-        </p>
-        <p v-if="!$v.form.email.email" class="errorText">
-          {{ this.$t("errorTextEmail") }}
-        </p>
+      <div v-if="form.check" class="form__item" :class="{ errorInput: $v.form.email.$error }">
+        <p v-if="!$v.form.email.required" class="errorText">{{ this.$t("required") }}</p>
+        <p v-if="!$v.form.email.email" class="errorText">{{ this.$t("errorTextEmail") }}</p>
         <AppInput
           v-model="form.email"
           new-class="form__input"
@@ -93,9 +71,7 @@
       </div>
       <!-- form.textarea -->
       <div class="form__item" :class="{ errorInput: $v.form.text.$error }">
-        <p v-if="!$v.form.text.required" class="errorText">
-          {{ this.$t("required") }}
-        </p>
+        <p v-if="!$v.form.text.required" class="errorText">{{ this.$t("required") }}</p>
         <p v-if="!$v.form.text.minLength" class="errorText">
           {{ this.$t("errorTextText") }}
           {{ $v.form.text.$params.minLength.min }} !
@@ -110,18 +86,14 @@
         />
       </div>
       <!-- button -->
-      <AppButton class="form__btn">
-        {{ this.$t("send") }}
-      </AppButton>
-      <!-- Badges -->
-      <Badges new-class="tag tag-form--bottom" tag="/form" />
+      <AppButton class="form__btn">{{ this.$t("send") }}</AppButton>
     </form>
   </div>
 </template>
 
 <script>
-import axios from "axios"
-import { required, minLength, email } from "vuelidate/lib/validators"
+import axios from "axios";
+import { required, minLength, email } from "vuelidate/lib/validators";
 export default {
   data() {
     return {
@@ -133,7 +105,7 @@ export default {
         check: true
       },
       message: null
-    }
+    };
   },
   validations() {
     if (this.form.check) {
@@ -152,7 +124,7 @@ export default {
             minLength: minLength(4)
           }
         }
-      }
+      };
     } else {
       return {
         form: {
@@ -169,19 +141,19 @@ export default {
             minLength: minLength(4)
           }
         }
-      }
+      };
     }
   },
   methods: {
     onChange(event) {
-      if (this.form.check && event == "email") return false
-      if (!this.form.check && event == "telegram") return false
+      if (this.form.check && event == "email") return false;
+      if (!this.form.check && event == "telegram") return false;
 
-      this.form.check = !this.form.check
-      this.reset()
+      this.form.check = !this.form.check;
+      this.reset();
     },
     onSubmit() {
-      this.$v.$touch()
+      this.$v.$touch();
       if (!this.$v.$invalid) {
         const user = this.form.check
           ? {
@@ -193,43 +165,43 @@ export default {
               name: this.form.name,
               userName: this.form.userName,
               text: this.form.text
-            }
+            };
         if (this.form.check) {
           // mail
           axios
             .post("https://sidorovweb.ru/mail.php", user)
             .then(res => {
-              console.log(res)
+              console.log(res);
             })
             .catch(e => {
-              console.log(e)
-            })
+              console.log(e);
+            });
         } else {
           // telegram
           axios
             .post("https://sidorovweb.ru/telegram.php", user)
             .then(res => {
-              console.log(res)
+              console.log(res);
             })
             .catch(e => {
-              console.log(e)
-            })
+              console.log(e);
+            });
         }
-        this.$store.dispatch("setMessage", this.$t("message"))
+        this.$store.dispatch("setMessage", this.$t("message"));
         // DONE
-        this.form.check = null
-        this.reset()
+        this.form.check = null;
+        this.reset();
       }
     },
     reset() {
-      this.form.name = ""
-      this.form.userName = ""
-      this.form.email = ""
-      this.form.text = ""
-      this.$v.$reset()
+      this.form.name = "";
+      this.form.userName = "";
+      this.form.email = "";
+      this.form.text = "";
+      this.$v.$reset();
     }
   }
-}
+};
 </script>
 
 <style lang="scss">
@@ -250,6 +222,7 @@ export default {
     display: flex;
   }
   &__text {
+    color: var(--white);
     @include sm {
       display: block;
       width: 100%;
@@ -263,6 +236,7 @@ export default {
     width: 0;
     height: 0;
     visibility: hidden;
+    color: var(--white);
 
     & + label {
       position: relative;
@@ -367,8 +341,4 @@ input:focus::-ms-input-placeholder,
 textarea:focus::-ms-input-placeholder {
   color: transparent;
 }
-// .form__item .error input,
-// .form__item .error textarea {
-//   border-color: var(--main-red);
-// }
 </style>

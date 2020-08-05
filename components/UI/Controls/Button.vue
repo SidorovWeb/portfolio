@@ -1,5 +1,5 @@
 <template>
-  <button class="btn" :class="btnClass" v-bind="$attrs" v-on="$listeners">
+  <button class="btn v-cursor-btn" :class="btnClass" v-bind="$attrs" v-on="$listeners">
     <!-- slot -->
     <slot></slot>
   </button>
@@ -13,7 +13,7 @@ export default {
       default: "btnDefaul"
     }
   }
-}
+};
 </script>
 
 <style></style>

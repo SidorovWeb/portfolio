@@ -14,9 +14,9 @@ export default {
     meta: [
       { charset: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { name: "theme-color", content: "#FF6666" },
-      { name: "msapplication-navbutton-color", content: "#FF6666" },
-      { name: "apple-mobile-web-app-status-bar-style", content: "#FF6666" }
+      { name: "theme-color", content: "#292929" },
+      { name: "msapplication-navbutton-color", content: "#292929" },
+      { name: "apple-mobile-web-app-status-bar-style", content: "#292929" }
     ],
     link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }]
   },
@@ -31,12 +31,7 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [
-    "~/plugins/app-components.js",
-    "~/plugins/i18n.js",
-    "~/plugins/cursor.js",
-    "~/plugins/normwheel.js"
-  ],
+  plugins: ["~/plugins/app-components.js", "~/plugins/i18n.js"],
   /*
    ** Nuxt.js modules
    */
@@ -47,7 +42,7 @@ export default {
    */
   router: {
     scrollBehavior: function(to, from, savedPosition) {
-      return { x: 0, y: 0 }
+      return { x: 0, y: 0 };
     }
   },
   build: {
@@ -56,17 +51,17 @@ export default {
      */
     extend(config, { isClient }) {
       if (isClient) {
-        config.devtool = "#source-map"
+        config.devtool = "#source-map";
       }
 
-      const svgRule = config.module.rules.find(rule => rule.test.test(".svg"))
+      const svgRule = config.module.rules.find(rule => rule.test.test(".svg"));
 
-      svgRule.test = /\.(png|jpe?g|gif|webp)$/
+      svgRule.test = /\.(png|jpe?g|gif|webp)$/;
 
       config.module.rules.push({
         test: /\.svg$/,
         loader: "vue-svg-loader"
-      })
+      });
     }
   }
-}
+};

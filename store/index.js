@@ -4,13 +4,16 @@ import { TweenMax } from "gsap";
 
 export const state = () => ({
   token: null,
-  start: false,
   screen: true,
+  nameLink: "about",
   firstScreen: true,
   toggleSidebar: false,
   continueRoute: true,
   message: null,
-  postsLoaded: []
+  postsLoaded: [],
+  clickNavMenu: false,
+  isMobile: false,
+  isDesktop: true
 });
 
 export const mutations = {
@@ -53,8 +56,19 @@ export const mutations = {
   setMessage(state, message) {
     state.message = message;
   },
-  playSVG(state, play) {
-    state.start = play;
+  setNameNavLink(state, name) {
+    state.nameLink = name;
+  },
+  setClickNavMenu(state, boolean) {
+    state.clickNavMenu = boolean;
+  },
+  setMobile(state) {
+    state.isMobile = true;
+    state.isDesktop = false;
+  },
+  setDescktop(state) {
+    state.isDesktop = true;
+    state.isMobile = false;
   }
 };
 export const actions = {
@@ -146,17 +160,18 @@ export const actions = {
   toggleSidebar({ commit }) {
     commit("toggleSidebar");
   },
+  // token
   setToken({ commit }) {
     commit("setToken");
+  },
+  setContinueRoute({ commit }, continueRoute) {
+    commit("setContinueRoute", continueRoute);
   },
   setScreen({ commit }, screen) {
     commit("setScreen", screen);
   },
   setFirstScreen({ commit }, screen) {
     commit("setFirstScreen", screen);
-  },
-  setContinueRoute({ commit }, continueRoute) {
-    commit("setContinueRoute", continueRoute);
   },
   setMessage({ commit }, message) {
     commit("setMessage", message);
@@ -170,25 +185,29 @@ export const actions = {
       });
     }, 4000);
   },
-  playSVG({ commit }, play) {
-    commit("playSVG", play);
+  setNameNavLink({ commit }, name) {
+    commit("setNameNavLink", name);
+  },
+  setClickNavMenu({ commit }, boolean) {
+    commit("setClickNavMenu", boolean);
+  },
+  // application-status
+  setMobile({ commit }) {
+    commit("setMobile");
+  },
+  setDescktop({ commit }) {
+    commit("setDescktop");
   }
 };
 
 export const getters = {
-  getPostsLoaded: state => state.postsLoaded,
-  getOneImg: state => {
-    const arrayPosts = state.postsLoaded;
-    const arrayImg = [];
-    arrayPosts.forEach(e => {
-      arrayImg.push(e.img);
-    });
-
-    const randomItem = arrayImg[Math.floor(Math.random() * arrayImg.length)];
-
-    return randomItem;
+  getPostsLoaded: state => {
+    return [...state.postsLoaded].reverse();
   },
   checkAuchUser: state => state.token != null,
   toggleSidebar: state => state.toggleSidebar,
-  getplaySVG: state => state.start
+  getNameNavLink: state => state.nameLink,
+  getClickNavMenu: state => state.clickNavMenu,
+  getMobile: state => state.isMobile,
+  getDesktop: state => state.isDesktop
 };

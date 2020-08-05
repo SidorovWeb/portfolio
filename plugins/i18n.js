@@ -18,17 +18,15 @@ export default ({ app }) => {
           skills: "Навыки",
           contacts: "Контакты"
         },
-        h2About1: "Привет",
+        h2About1: "Привет!",
         h2About2: "я Александр",
         aboutText:
-          "Я целеустремленный, увлеченный, самостоятельный и всегда развивающийся начинающий разработчик.Слежу за новостями на youtube-каналах. Читаю статьи на Хабре и Медиуме.Стремлюсь к полной занятости.",
+          "Занимаюсь версткой, и делаю это хорошо. Почему стоит обратиться ко мне? Я не пропадаю ни во время заказа, ни после. Всегда на связи. Вы всегда можете задать интересующий вопрос.Я не увеличиваю обговоренную заранее стоимость заказа, даже если он оказался сложнее, чем я сперва оценил (конечно, если не появляется новых требований). Всегда сдаю проекты вовремя (редко срок может быть превышен в связи с доработками). Пишите мне! Буду рад ответить на ваши вопросы.",
         h2Portfolio1: "Мои",
         h2Portfolio2: "Работы",
         portfolioBtn: "Нажмите для перехода к работам",
         h2Skills1: "Навыки и",
         h2Skills2: "опыт",
-        skillsText:
-          "Адаптивная верстка с использованием flexbox и медиа запросов. Оптимальное отображение сайта во всех современных браузерах. Оптимизация сайта: проверка скорость загрузки сайта, оптимизация сайта для лучшей индексации поисковыми системами, HTML и CSS валидация.",
         tools: "Инструменты",
         methodology: "Методология",
         bem: "БЭМ",
@@ -36,6 +34,8 @@ export default ({ app }) => {
         h2Contacts2: "со мной",
         contactsText:
           "Меня интересуют фрилансерские возможности либо работа в офисе. Однако, если у вас есть другой вопрос, обращаться ко мне, используя форму или социальные сети.",
+        contactsFB:
+          "Вы также можете со мной связаться через биржу фриланс-услуг",
         send: "Отправить",
         plhName: "Ваше имя",
         plhTelegram: "Имя пользователя: @Aleksandr",
@@ -62,17 +62,15 @@ export default ({ app }) => {
           skills: "skills",
           contacts: "Сontacts"
         },
-        h2About1: "Hi",
+        h2About1: "Hi!",
         h2About2: "I'm Aleksandr",
         aboutText:
-          "I am passionate and always developing starting developer from Moscow. I follow the news on youtube channels. I read articles on Habra and Medium. I aspire to full employment.",
+          "I do the layout and I do it well. Why would you mess with me? I do not disappear either during the order or after. Always in touch. You can always ask a question of interest. I do not increase the pre-agreed cost of the order, even if it turned out to be more complicated than I originally thought (of course, if there are no new requirements). I always deliver projects on time (rarely, deadlines can be exceeded due to improvements). Write me! I will be glad to answer your questions.",
         h2Portfolio1: "My",
         h2Portfolio2: "works",
         portfolioBtn: "Click to go to work.",
         h2Skills1: "Skills &",
         h2Skills2: "Experience",
-        skillsText:
-          "Adaptive layout using flexbox and media queries. An optimal display of the website in all modern browsers. Website optimization: check website loading speed, website optimization for better indexing by searching engines, HTML and CSS validation.",
         tools: "Tools",
         methodology: "Methodology",
         bem: "BEM",
@@ -80,6 +78,7 @@ export default ({ app }) => {
         h2Contacts2: "me",
         contactsText:
           "I am interested in freelancing opportunities or a job in the office. However, if you have another questions, contact me using the form or social media.",
+        contactsFB: "You can also contact me through the freelance exchange",
         send: "Send",
         sendToEmail: "to mail",
         plhName: "Your name",

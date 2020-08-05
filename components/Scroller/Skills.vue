@@ -3,55 +3,37 @@
     <div class="text-zone skills__text-zone">
       <!-- headline -->
       <Headline title="skills__title" word1="h2Skills1" word2="h2Skills2" />
-      <div class="text-zone__text-container">
-        <!-- Badges -->
-        <Badges new-class="tag tag-text--top" tag="p" />
-        <!-- text -->
-        <p class="skills__text text-zone__text">
-          {{ this.$t("skillsText") }}
-        </p>
-        <!-- Badges -->
-        <Badges new-class="tag tag-text--bottom" tag="/p" />
-      </div>
+      <!-- <div class="text-zone__text-container">
+        <p class="skills__text text-zone__text">{{ this.$t("skillsText") }}</p>
+      </div>-->
     </div>
     <div class="skills__tags mauto ml100">
-      <!-- Badges -->
-      <Badges new-class="tag tag-text--top" tag="ul" />
       <!-- tags -->
       <div class="skills__tag">
-        <p><span>HTML</span></p>
+        <p>
+          <span>HTML</span>
+        </p>
         <ul class="skills__list">
-          <li class="skills__item">
-            PUG
-          </li>
+          <li class="skills__item">PUG</li>
         </ul>
       </div>
       <div class="skills__tag">
-        <p><span>CSS</span></p>
+        <p>
+          <span>CSS</span>
+        </p>
         <ul class="skills__list">
-          <li class="skills__item">
-            SCSS
-          </li>
-          <li class="skills__item">
-            less
-          </li>
-          <li class="skills__item">
-            Bootstrap
-          </li>
+          <li class="skills__item">SCSS</li>
+          <li class="skills__item">less</li>
+          <li class="skills__item">Bootstrap</li>
         </ul>
       </div>
       <div class="skills__tag">
-        <p><span>Javascript</span></p>
+        <p>
+          <span>Javascript</span>
+        </p>
         <ul class="skills__list">
-          <li class="skills__item">
-            jQuery
-          </li>
-          <li class="skills__item">
-            Vue.js
-          </li>
-          <li class="skills__item">
-            GSAP
-          </li>
+          <li class="skills__item">jQuery</li>
+          <li class="skills__item">Vue.js</li>
         </ul>
       </div>
       <div class="skills__tag">
@@ -59,29 +41,16 @@
           <span>{{ this.$t("tools") }}</span>
         </p>
         <ul class="skills__list">
-          <li class="skills__item">
-            Gulp
-          </li>
-          <li class="skills__item">
-            WebPack
-          </li>
-          <li class="skills__item">
-            VSCode
-          </li>
-          <li class="skills__item">
-            GIT
-          </li>
+          <li class="skills__item">Gulp</li>
+          <li class="skills__item">WebPack</li>
+          <li class="skills__item">VSCode</li>
+          <li class="skills__item">GIT</li>
         </ul>
         <ul class="skills__list">
-          <li class="skills__item">
-            GitHub
-          </li>
-          <li class="skills__item">
-            Photoshop
-          </li>
-          <li class="skills__item">
-            Avocode
-          </li>
+          <li class="skills__item">GitHub</li>
+          <li class="skills__item">Photoshop</li>
+          <li class="skills__item">Avocode</li>
+          <li class="skills__item">Figma</li>
         </ul>
       </div>
       <div class="skills__tag">
@@ -89,26 +58,96 @@
           <span>{{ this.$t("methodology") }}</span>
         </p>
         <ul class="skills__list">
-          <li class="skills__item">
-            {{ this.$t("bem") }}
-          </li>
+          <li class="skills__item">{{ this.$t("bem") }}</li>
         </ul>
       </div>
       <div class="skills__tag">
-        <p><span>HTML to WordPress</span></p>
+        <p>
+          <span>HTML to WordPress</span>
+        </p>
       </div>
-      <!-- Badges -->
-      <Badges new-class="tag tag-text--bottom" tag="/ul" />
-      <!-- <SVGMovingForward class="skills__img" /> -->
+      <SVGMCodeDevelopment class="skills__svg" />
     </div>
   </div>
 </template>
 
 <script>
-// import SVGMovingForward from "@/static/img/svg/moving-forward.svg";
+import SVGMCodeDevelopment from "@/static/img/svg/code-development.svg";
 
 export default {
-  // components: { SVGMovingForward }
+  components: { SVGMCodeDevelopment },
+  mounted() {
+    this.animElems();
+  },
+  computed: {
+    clickNav() {
+      return this.$store.getters.getClickNavMenu;
+    }
+  },
+  watch: {
+    clickNav: function(clickMenuNav) {
+      if (clickMenuNav) {
+        this.leave();
+      }
+    }
+  },
+  methods: {
+    animElems() {
+      let tl = new TimelineMax({});
+      const title = document.querySelectorAll(".title-section .word");
+      // const text = document.querySelector(".skills__text");
+      const skillsLine = document.querySelectorAll(".skills__tag");
+      const svg = document.querySelector(".skills__svg");
+
+      TweenMax.set([skillsLine, svg], {
+        autoAlpha: 0,
+        scale: 0.95,
+        yPercent: 2
+      });
+
+      tl.staggerFromTo(
+        title,
+        1.2,
+        { yPercent: 115, autoAlpha: 1 },
+        { delay: 0.4, yPercent: 0, ease: Power1.easeNone },
+        0.3
+      );
+      tl.staggerTo(
+        skillsLine,
+        1,
+        {
+          autoAlpha: 1,
+          yPercent: 0,
+          scale: 1,
+          ease: Power1.easeNone
+        },
+        0.3,
+        1
+      ).to(
+        svg,
+        1,
+        {
+          autoAlpha: 0.1,
+          yPercent: 0,
+          scale: 1,
+          ease: Power1.easeNone
+        },
+        1.5
+      );
+    },
+    leave() {
+      let tl = new TimelineMax();
+      const title = document.querySelectorAll(".title-section .word");
+      // const text = document.querySelector(".skills__text");
+      const skillsLine = document.querySelectorAll(".skills__tag");
+      const svg = document.querySelector(".skills__svg");
+
+      tl.to([title, skillsLine, svg], 1, {
+        autoAlpha: 0,
+        ease: Power1.easeNone
+      });
+    }
+  }
 };
 </script>
 
@@ -120,30 +159,24 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  @include md {
+  @include lg {
     flex-direction: column;
+    margin-bottom: 4rem;
   }
+
   &__text-zone {
     @include xlg {
       width: calc(50% - 15px);
     }
-    @include md {
+    @include lg {
       width: 100%;
-      margin-bottom: 3rem;
-    }
-  }
-  &__line {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    & > * {
-      margin: 1rem 0;
-      font-weight: 700;
+      margin-bottom: 2rem;
+      line-height: 28px;
     }
   }
   &__tags {
-    padding-top: 1rem;
     position: relative;
+    padding-top: 1rem;
     z-index: 2;
     @include xlg {
       display: flex;
@@ -151,7 +184,7 @@ export default {
       flex-direction: column;
       padding-left: 10%;
     }
-    @include md {
+    @include lg {
       padding-top: 0rem;
       width: 100%;
       padding-left: 0;
@@ -167,14 +200,20 @@ export default {
     display: flex;
     flex-direction: column;
     text-transform: uppercase;
+
     p {
       margin-bottom: 1rem;
       font-size: 1.2rem;
       overflow: hidden;
       font-weight: 700;
+
+      @include md {
+        font-size: 1rem;
+      }
     }
     span {
       display: inline-block;
+      color: var(--main-red);
     }
   }
   &__list {
@@ -192,16 +231,22 @@ export default {
     }
   }
   &__item {
-    color: var(--main-red);
+    color: var(--white);
+    @include md {
+      font-size: 0.9rem;
+    }
   }
-
-  // &__img {
-  //   opacity: 0.1;
-  //   position: absolute;
-  //   top: 0;
-  //   width: 100%;
-  //   height: 100%;
-  //   z-index: 1;
-  // }
+  &__svg {
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    width: 500px;
+    height: 500px;
+    opacity: 0.1;
+    @include md {
+      width: 300px;
+      height: 300px;
+    }
+  }
 }
 </style>

@@ -3,14 +3,13 @@
     <div class="loading-screen">
       <div class="loading-screen__wrapp">
         <div class="loading-screen__title h4">
-          <span class="mask-text mask-text--1 js-splitme">{{
+          <span class="mask-text mask-text--1 js-splitme">
+            {{
             this.$t("dev")
-          }}</span>
+            }}
+          </span>
         </div>
       </div>
-    </div>
-    <div class="ScreenSecond">
-      <div class="overlay"></div>
     </div>
     <!-- resize -->
     <resize-observer @notify="handleResize" />
@@ -18,23 +17,23 @@
 </template>
 
 <script>
-import { TimelineMax, TweenMax, Power0, Power1, Power2 } from "gsap";
-import { mapState } from "vuex";
+import { TimelineMax, TweenMax, Power0, Power1 } from "gsap";
+import { mapState, mapActions } from "vuex";
 import Splitter from "split-html-to-chars";
 
 export default {
+  computed: {
+    ...mapState(["firstScreen"])
+  },
   mounted() {
     if (this.firstScreen) {
       this.animLoadScreen();
     } else {
       this.screenFirst();
     }
-    console.log(this.firstScreen);
-  },
-  computed: {
-    ...mapState(["firstScreen"])
   },
   methods: {
+    ...mapActions(["setScreen", "setFirstScreen"]),
     animLoadScreen() {
       const self = this;
       const splits = document.querySelectorAll(".js-splitme");
@@ -50,7 +49,7 @@ export default {
       const tl = new TimelineMax({ onComplete: self.screenFirst });
       tl.staggerFromTo(
         ".mask-text .letter",
-        1,
+        0.8,
         {
           scaleW: 0.1,
           webKitFilter: "blur(5px)",
@@ -63,20 +62,20 @@ export default {
           webKitFilter: "blur(0px)",
           filter: "blur(0px)",
           x: 0,
-          delay: 1.5,
           ease: Power1.easeOut
         },
-        0.2
+        0.2,
+        0
       ).fromTo(
         ".loading-screen__wrapp",
-        1,
+        0.5,
         { autoAlpha: 1 },
-        { autoAlpha: 0, ease: Power0.easeNone }
+        { autoAlpha: 0, y: -20, ease: Power0.easeNone }
       );
     },
     screenFirst() {
-      this.$store.dispatch("setScreen", false);
-      this.$store.dispatch("setFirstScreen", false);
+      this.setScreen(false);
+      this.setFirstScreen(false);
     },
     handleResize() {
       const vh = window.innerHeight * 0.01;
@@ -87,6 +86,7 @@ export default {
 </script>
 
 <style lang="scss">
+@import "@/assets/scss/mixins/mixins";
 .loading-screen {
   position: fixed;
   top: 0;
@@ -100,6 +100,11 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: var(--bg-color-rgba);
+
+  @include lg {
+    background-color: transparent;
+  }
 
   &__title {
     font-size: 1.5rem;
@@ -124,15 +129,7 @@ export default {
     visibility: hidden;
   }
 }
-.ScreenSecond {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  width: 100%;
-  overflow: hidden;
-}
+
 .overlay {
   position: fixed;
   top: 0;

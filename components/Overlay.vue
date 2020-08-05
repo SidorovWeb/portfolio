@@ -2,10 +2,6 @@
   <div class="overlay-route"></div>
 </template>
 
-<script>
-export default {}
-</script>
-
 <style lang="scss">
 @import "@/assets/scss/utils/vars";
 .overlay-route {

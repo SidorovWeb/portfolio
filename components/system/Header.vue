@@ -2,48 +2,36 @@
   <div class="header">
     <!-- SVGhome -->
     <div class="to-home header__to-home">
-      <nuxt-link class="header__link" to="/">
+      <nuxt-link class="v-cursor-btn header__link" to="/">
         <SVGhome class="svg-home" />
         <!-- <span>На главную</span> -->
       </nuxt-link>
     </div>
     <!-- AppHamburger -->
-    <AppHamburger />
+    <AppHamburger class="header__hamburger" />
     <div class="header__developer">
       <a
         href="https://vk.com/sidorovalexandern"
         target="_blank"
-        class="header__link animColor"
-      >
-        {{ this.$t("dev") }}
-      </a>
+        class="v-cursor-btn header__link animColor"
+      >{{ this.$t("dev") }}</a>
     </div>
     <!-- SVGadmin -->
-    <div class="header__admin">
+    <!-- <div class="header__admin">
       <nuxt-link to="/auth">
         <SVGadmin />
       </nuxt-link>
-    </div>
+    </div>-->
     <no-ssr>
       <div class="flags header__flags">
         <!-- SVGflagUS -->
-        <span
-          v-if="lang"
-          class="flag"
-          href="#"
-          @click="classMonitoring(), changeLanguage('us')"
-        >
+        <div v-if="lang" class="v-cursor-btn flag" @click="changeLanguage('us')">
           <SVGflagUS />
-        </span>
+        </div>
         <!-- SVGflagRU -->
-        <span
-          v-if="!lang"
-          class="flag"
-          href="#"
-          @click="classMonitoring(), changeLanguage('ru')"
-        >
+        <div v-if="!lang" class="v-cursor-btn flag" @click="changeLanguage('ru')">
           <SVGflagRU />
-        </span>
+        </div>
       </div>
     </no-ssr>
     <!-- toggleSwitchMode -->
@@ -52,6 +40,7 @@
 </template>
 
 <script>
+import { TweenMax } from "gsap";
 import toggleSwitchMode from "@/components/UI/Controls/ToggleSwitchMode.vue";
 import SVGhome from "@/static/img/svg/home.svg";
 import SVGflagRU from "@/static/img/svg/russia.svg";
@@ -76,6 +65,9 @@ export default {
       }
     }
   },
+  mounted() {
+    this.animHeader();
+  },
   methods: {
     changeLanguage(lang) {
       this.lang = !this.lang;
@@ -83,26 +75,25 @@ export default {
       if (process.browser) {
         localStorage.setItem("lang", lang);
       }
-      this.addClass();
     },
-    classMonitoring() {
-      let mainPage = document.querySelector(".main-page ");
-      if (mainPage) {
-        let elementСlasses = document.querySelector(".active-scroller-section")
-          .classList;
-        this.class = elementСlasses[0];
-      }
-      return false;
-    },
-    addClass() {
-      let mainPage = document.querySelector(".main-page ");
-      if (mainPage) {
-        let el = document.querySelector(`.${this.class}`);
-        setTimeout(() => {
-          el.classList.add("active-scroller-section");
-        }, 0);
-      }
-      return false;
+    animHeader() {
+      const header = document.querySelector(".header");
+
+      let duration = !window.matchMedia("screen and (max-width: 1024px)")
+        .matches
+        ? 1
+        : 0;
+      let durPointer = duration == 1 ? 1 : 0;
+
+      TweenMax.set(header, { autoAlpha: 0, visibility: "hidden" });
+
+      let tl = new TimelineMax();
+
+      tl.to(header, duration, {
+        delay: 1,
+        autoAlpha: 1,
+        ease: Power2.inOut
+      });
     }
   }
 };
@@ -134,13 +125,13 @@ export default {
   justify-content: flex-end;
   width: 100%;
   padding: 1.25rem 2rem;
-  z-index: 1;
+  z-index: 10;
   @include xlg {
     background-color: var(--bg-color-rgba);
     box-shadow: 0px 1px 4px 0px var(--bg-color);
     padding: 1.25rem 1rem;
   }
-  @include md {
+  @include lg {
     padding: 1rem;
   }
   &__link {
@@ -163,18 +154,20 @@ export default {
     margin-right: auto;
   }
   &__developer {
-    @include md {
+    @include lg {
       display: none;
     }
   }
   &__flags {
     svg {
+      position: relative;
       width: 27px;
       transform: translateY(3px);
+      z-index: -1;
     }
-    span {
-      cursor: pointer;
-    }
+  }
+  & .flag {
+    cursor: pointer;
   }
   &__link {
     color: var(--white);
@@ -191,6 +184,9 @@ export default {
       fill: var(--white);
       width: 21px;
     }
+  }
+  &__hamburger {
+    margin-right: auto;
   }
 }
 .svg-home {

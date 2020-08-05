@@ -42,7 +42,7 @@ export default {
       type: Object,
       required: false,
       default: function() {
-        return {}
+        return {};
       }
     }
   },
@@ -59,17 +59,17 @@ export default {
             certificate: "",
             tags: ""
           }
-    }
+    };
   },
   methods: {
     onSubmit() {
-      this.$emit("submit", this.post)
+      this.$emit("submit", this.post);
     },
     cancel() {
-      this.$router.push("/admin/")
+      this.$router.push("/admin/");
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>

@@ -1,15 +1,11 @@
 <template>
-  <h2 :class="title" class="h2">
-    <!-- Badges -->
-    <Badges new-class="tag tag--top" tag="h2" />
+  <h2 :class="title" class="h2 title-section">
     <span class="word-container">
-      <span class="word">{{ this.$t(word1) }} </span>
+      <span class="word">{{ this.$t(word1) }}</span>
     </span>
     <span class="word-container">
-      <span class="word">{{ this.$t(word2) }} </span>
+      <span class="word">{{ this.$t(word2) }}</span>
     </span>
-    <!-- Badges -->
-    <Badges new-class="tag tag--bottom" tag="/h2" />
   </h2>
 </template>
 
@@ -50,6 +46,7 @@ export default {
   @include xlg {
     @include fluidFontSize(28px, 60px, 576px, 1024px, 38px);
   }
+
   @include md {
     line-height: 2.5rem;
   }

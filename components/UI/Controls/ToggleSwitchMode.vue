@@ -1,48 +1,48 @@
 <template>
   <div class="theme-switch-wrapper">
-    <input
-      id="checkbox"
-      class="tgl tgl-light"
-      type="checkbox"
-      checked
-      @change="switchTheme"
-    />
-    <label class="tgl-btn" for="checkbox"></label>
+    <input id="checkbox" class="tgl tgl-light" type="checkbox" checked @change="switchTheme" />
+    <label class="v-cursor-btn tgl-btn" for="checkbox"></label>
   </div>
 </template>
 
 <script>
 export default {
   mounted() {
-    this.toggleSwitch()
+    this.toggleSwitch();
   },
   methods: {
     toggleSwitch() {
-      const toggleSwitch = document.querySelector('.tgl[type="checkbox"]')
-      const currentTheme = localStorage.getItem("theme")
+      const toggleSwitch = document.querySelector('.tgl[type="checkbox"]');
+      const currentTheme = localStorage.getItem("theme");
 
       if (currentTheme) {
-        document.documentElement.setAttribute("data-theme", currentTheme)
+        document.documentElement.setAttribute("data-theme", currentTheme);
 
         if (currentTheme === "dark") {
-          toggleSwitch.checked = true
+          toggleSwitch.checked = true;
         }
         if (currentTheme === "light") {
-          toggleSwitch.checked = false
+          toggleSwitch.checked = false;
         }
       }
     },
     switchTheme(e) {
+      document.documentElement.classList.add("theme-transition");
+
+      setTimeout(() => {
+        document.documentElement.classList.remove("theme-transition");
+      }, 500);
+
       if (e.target.checked) {
-        document.documentElement.setAttribute("data-theme", "dark")
-        localStorage.setItem("theme", "dark")
+        document.documentElement.setAttribute("data-theme", "dark");
+        localStorage.setItem("theme", "dark");
       } else {
-        localStorage.setItem("theme", "light")
-        document.documentElement.setAttribute("data-theme", "light")
+        localStorage.setItem("theme", "light");
+        document.documentElement.setAttribute("data-theme", "light");
       }
     }
   }
-}
+};
 </script>
 
 <style lang="scss">

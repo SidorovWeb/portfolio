@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper ">
+  <div class="wrapper">
     <div class="auth-header">
       <!-- SVGhome -->
       <nuxt-link class="auth-header__link auth-header__to-home__link" to="/">
@@ -9,7 +9,7 @@
     <!-- nuxt -->
     <nuxt />
     <!-- cursor -->
-    <div class="cursor"></div>
+    <!-- <div class="cursor"></div> -->
     <!-- message -->
     <Message v-if="message" :message="message" mes-class="error" />
     <!-- Overlay -->
@@ -46,7 +46,7 @@ h1 {
   align-items: center;
   padding: 1.25rem 2.5rem;
   z-index: 1;
-  @include md {
+  @include lg {
     padding: 1.2rem;
   }
   & > * {

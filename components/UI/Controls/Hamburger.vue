@@ -1,5 +1,5 @@
 <template>
-  <div :class="['hamburger', { 'hamburger--open': open }]" @click="toggleNav">
+  <div class="v-cursor-btn" :class="['hamburger', { 'hamburger--open': open }]" @click="toggleNav">
     <span class="hamburger__span"></span>
   </div>
 </template>
@@ -8,15 +8,15 @@
 export default {
   computed: {
     open() {
-      return this.$store.state.toggleSidebar
+      return this.$store.state.toggleSidebar;
     }
   },
   methods: {
     toggleNav: function() {
-      this.$store.dispatch("toggleSidebar")
+      this.$store.dispatch("toggleSidebar");
     }
   }
-}
+};
 </script>
 <style lang="scss">
 @import "@/assets/scss/mixins/mixins";

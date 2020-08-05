@@ -2,20 +2,18 @@
   <div class="contacts">
     <div class="text-zone contacts__text-zone">
       <!-- headline -->
-      <Headline
-        title="contacts__title"
-        word1="h2Contacts1"
-        word2="h2Contacts2"
-      />
+      <Headline title="contacts__title" word1="h2Contacts1" word2="h2Contacts2" />
       <div class="text-zone__text-container">
-        <!-- Badges -->
-        <Badges new-class="tag tag-text--top" tag="p" />
         <!-- text -->
-        <p class="contacts__text text-zone__text">
-          {{ this.$t("contactsText") }}
+        <p class="contacts__text text-zone__text">{{ this.$t("contactsText") }}</p>
+        <p class="contacts__text">
+          {{this.$t("contactsFB")}}
+          <a
+            href="https://kwork.ru/user/sidorovalexander"
+            target="_blink"
+            class="contacts__fb v-cursor-btn"
+          >Kwork</a>
         </p>
-        <!-- Badges -->
-        <Badges new-class="tag tag-text--bottom" tag="/p" />
       </div>
     </div>
     <div class="contacts__wrapper mauto ml100">
@@ -24,6 +22,7 @@
         <Form class="contacts__form" />
         <!-- social -->
         <SocialButton class="contacts__social" />
+        <!-- svg -->
         <SVGchat class="contacts__chat" />
       </div>
     </div>
@@ -32,58 +31,82 @@
 
 <script>
 import SVGchat from "@/static/img/svg/chat.svg";
-import { TimelineMax, TweenMax, Power2 } from "gsap";
+import { TweenMax } from "gsap";
 
 export default {
   components: { SVGchat },
+  mounted() {
+    this.animElems();
+  },
   computed: {
-    playSVG() {
-      return this.$store.state.start;
+    clickNav() {
+      return this.$store.getters.getClickNavMenu;
     }
   },
   watch: {
-    playSVG: function(play) {
-      if (play) {
-        this.playAnimeSVG();
+    clickNav: function(clickMenuNav) {
+      if (clickMenuNav) {
+        this.leave();
       }
     }
   },
   methods: {
-    playAnimeSVG() {
-      TweenMax.to(".svg-contact-right-finger", 1.5, {
-        rotation: -8,
-        transformOrigin: "50% center",
-        ease: "none",
-        yoyo: true,
-        repeat: -1,
-        repeatDelay: 2
+    animElems() {
+      let tl = new TimelineMax({});
+      const title = document.querySelectorAll(".title-section .word");
+      const text = document.querySelectorAll(".contacts__text");
+      const form = document.querySelectorAll(".contacts__form");
+      const social = document.querySelectorAll(".contacts__social");
+      const svg = document.querySelectorAll(".contacts__chat");
+
+      TweenMax.set([text, form, social, svg], {
+        autoAlpha: 0,
+        scale: 0.95,
+        yPercent: 2
       });
 
-      TweenMax.to(".svg-contact-right-hand", 4, {
-        y: -30,
-        ease: "none",
-        yoyo: true,
-        repeat: -1,
-        repeatDelay: 5
-      });
+      tl.staggerFromTo(
+        title,
+        1.2,
+        { yPercent: 115, autoAlpha: 1 },
+        { delay: 0.4, yPercent: 0, ease: Power1.easeNone },
+        0.3
+      );
+      tl.staggerTo(
+        [text, form, social],
+        1,
+        {
+          autoAlpha: 1,
+          yPercent: 0,
+          scale: 1,
+          ease: Power1.easeNone
+        },
+        0.3,
+        1
+      );
+      tl.to(
+        svg,
+        1,
+        {
+          autoAlpha: 0.1,
+          yPercent: 0,
+          scale: 1,
+          ease: Power1.easeNone
+        },
+        1.5
+      );
+    },
+    leave() {
+      let tl = new TimelineMax();
+      const title = document.querySelectorAll(".title-section .word");
+      const text = document.querySelectorAll(".contacts__text");
+      const form = document.querySelectorAll(".contacts__form");
+      const social = document.querySelectorAll(".contacts__social");
+      const svg = document.querySelectorAll(".contacts__chat");
 
-      TweenMax.staggerTo(".svg-contact-chat", 0.7, {
-        opacity: 0,
-        ease: "none",
-        yoyo: true,
-        repeat: -1,
-        repeatDelay: 0.2,
-        stagger: 1
-      });
-
-      TweenMax.staggerTo(".svg-contact-chat2", 0.7, {
-        opacity: 0,
-        ease: "none",
-        yoyo: true,
-        repeat: -1,
-        delay: 0.4,
-        repeatDelay: 0.4,
-        stagger: 1
+      tl.to([title, text, form, social, svg], 1, {
+        autoAlpha: 0,
+        ease: Power1.easeNone
       });
     }
   }
@@ -97,7 +120,7 @@ export default {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  @include md {
+  @include lg {
     flex-direction: column;
   }
   &__wrapper {
@@ -110,7 +133,7 @@ export default {
     @include xlg {
       width: calc(50% - 15px);
     }
-    @include md {
+    @include lg {
       width: 100%;
     }
   }
@@ -118,9 +141,10 @@ export default {
     @include xlg {
       width: calc(50% - 15px);
     }
-    @include md {
+    @include lg {
       width: 100%;
-      margin-bottom: 3rem;
+      margin-bottom: 2rem;
+      line-height: 28px;
     }
   }
   &__form-wrapper {
@@ -128,7 +152,7 @@ export default {
     width: 100%;
     position: relative;
 
-    @include md {
+    @include lg {
       max-width: 100%;
     }
   }
@@ -147,6 +171,10 @@ export default {
   &__social {
     z-index: 2;
     position: relative;
+  }
+  &__fb {
+    color: var(--main-red);
+    text-transform: uppercase;
   }
 }
 </style>

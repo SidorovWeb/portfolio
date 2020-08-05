@@ -5,9 +5,11 @@
     <div class="mmenu__wrapper">
       <ul class="mmenu__list">
         <li v-for="(item, i) in this.$t('nav')" :key="item.i" class="mmenu__item">
-          <a class="mmenu__link" href="#" @click.prevent="scrollTo(i)">{{
+          <a class="mmenu__link" href="#" @click.prevent="scrollTo(i)">
+            {{
             item
-          }}</a>
+            }}
+          </a>
         </li>
       </ul>
       <!-- social -->
@@ -17,33 +19,29 @@
 </template>
 
 <script>
-import { TimelineMax, TweenMax, Power0 } from "gsap"
-import ScrollToPlugin from "gsap/umd/ScrollToPlugin.js"
+import { TimelineMax, TweenMax, Power0 } from "gsap";
+import ScrollToPlugin from "gsap/umd/ScrollToPlugin.js";
 
 export default {
-  data () {
+  data() {
     return {
       done: null
-    }
+    };
   },
   computed: {
-    open () {
-      return this.$store.state.toggleSidebar
+    open() {
+      return this.$store.state.toggleSidebar;
     }
   },
   watch: {
-    open: function (open) {
-      const self = this
-      const x = open ? 0 : -115
-      const y = open ? 0 : 115
-      const delay = open ? 0.1 : 0
-      const stagger = open ? 0.1 : 0
-      const tl = new TimelineMax({ onComplete: self.toggleClass })
+    open: function(open) {
+      const self = this;
+      const x = open ? 0 : -115;
+      const y = open ? 0 : 115;
+      const delay = open ? 0.1 : 0;
+      const stagger = open ? 0.1 : 0;
+      const tl = new TimelineMax({ onComplete: self.toggleClass });
       tl.add("mmenu")
-        // .set('.header', {
-        //   backgroundColor: "transparent",
-        //   boxShadow: 'transparent'
-        // })
         .to(
           ".mmenu",
           0.5,
@@ -74,38 +72,38 @@ export default {
           },
           stagger,
           "mmenu"
-        )
+        );
     }
   },
-  mounted () {
+  mounted() {
     TweenMax.set(".mmenu", {
       visibility: "visible"
-    })
+    });
     TweenMax.set([".mmenu", ".mmenu__link"], {
       xPercent: -115
-    })
+    });
     TweenMax.set(".mmenu__social .social__link", {
       yPercent: 50
-    })
+    });
   },
   methods: {
-    scrollTo (i) {
-      const f = ScrollToPlugin
+    scrollTo(i) {
+      const f = ScrollToPlugin;
 
-      this.$store.dispatch("toggleSidebar")
+      this.$store.dispatch("toggleSidebar");
       TweenMax.to(window, 1, {
         scrollTo: { y: `.${i}`, offsetY: 70, autoKill: true },
         overwrite: 5,
         delay: 0.51,
         ease: Power0.easeNone
-      })
+      });
     },
-    toggleClass () {
-      const body = document.querySelector("body")
-      body.classList.toggle("mmenu-open")
+    toggleClass() {
+      const body = document.querySelector("body");
+      body.classList.toggle("mmenu-open");
     }
   }
-}
+};
 </script>
 
 <style lang="scss">
@@ -130,7 +128,7 @@ export default {
   background-color: var(--main-red);
   will-change: transform;
   backface-visibility: hidden;
-  z-index: 1;
+  z-index: 999;
   @include xlg {
     display: flex;
     align-items: center;
@@ -152,6 +150,10 @@ export default {
       height: auto;
       justify-content: space-between;
       padding: 0 2.5rem;
+    }
+
+    @media only screen and (max-width: 576px) {
+      height: auto;
     }
   }
   &__list {
@@ -190,12 +192,14 @@ export default {
   }
   &__social {
     margin-top: auto;
-    margin-bottom: 2rem;
-    @media only screen and (min-device-width: 576px) and (orientation: landscape) {
-      margin-bottom: 0;
-    }
+    display: flex;
+    align-items: center;
+
     & .social__link svg {
       fill: var(--white);
+    }
+    & .social__link--fb {
+      color: var(--white);
     }
   }
 }

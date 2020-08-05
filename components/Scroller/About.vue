@@ -1,172 +1,112 @@
 <template>
-  <div class="about active-scroller-section">
+  <div class="about">
     <div class="about__text-zone">
-      <!-- <h1 v-if="!start">cdsfsKLKLKLKLKe</h1> -->
       <!-- headline -->
       <Headline title="about__title" word1="h2About1" word2="h2About2" />
       <div class="about__text-container">
-        <!-- Badges -->
-        <Badges new-class="tag tag-text--top" tag="p" />
         <!-- text  -->
-        <p class="about__text text-zone__text">
-          {{ this.$t("aboutText") }}
-        </p>
-        <!-- Badges -->
-        <Badges new-class="tag tag-text--bottom" tag="/p" />
+        <p class="about__text text-zone__text">{{ this.$t("aboutText") }}</p>
       </div>
     </div>
     <div class="about__photo-wrapper">
       <div class="about__photo">
         <SVGSmileyFace class="about__svg" />
-
-        <div id="rain-container"></div>
       </div>
     </div>
-    <!-- resize -->
-    <resize-observer @notify="handleResize" />
   </div>
 </template>
 
 <script>
 import SVGSmileyFace from "@/static/img/svg/focused-working.svg";
-import { TimelineMax, TweenMax, Power2 } from "gsap";
+import { TweenMax, TimelineMax } from "gsap";
 
 export default {
   components: { SVGSmileyFace },
+  mounted() {
+    this.animeAboutePhoto();
+    this.animElems();
+  },
   computed: {
-    playSVG() {
-      return this.$store.state.start;
+    clickNav() {
+      return this.$store.getters.getClickNavMenu;
     }
   },
   watch: {
-    playSVG: function(play) {
-      if (play) {
-        this.animeAboutePhoto();
+    clickNav: function(clickMenuNav) {
+      if (clickMenuNav) {
+        this.leave();
       }
     }
   },
   methods: {
     animeAboutePhoto() {
-      this.animeRain();
-
-      this.posContainerRain();
-
-      let tl = new TimelineMax()
-        .fromTo(
-          ".svg-body",
-          2,
-          { scaleX: 1, x: 0, transformOrigin: "50% center" },
-          { scaleX: 1.06, x: -2, ease: "none", yoyo: true, repeat: -1 },
-          "step1"
-        )
-        .fromTo(
-          ".svg-left-leg",
-          2,
-          { rotation: "0", x: 0, y: 0, transformOrigin: "50% center" },
-          {
-            rotation: "-15deg",
-            x: 2,
-            y: -4,
-            ease: "none",
-            yoyo: true,
-            repeat: -1
-          },
-          "step1"
-        )
-        .fromTo(
-          ".svg-right-hand",
-          0.3,
-          { y: "0" },
-          { y: ".5px", ease: "none", yoyo: true, repeat: -1 },
-          "step1"
-        )
+      let tl = new TimelineMax();
+      tl.fromTo(
+        ".svg-right-hand",
+        0.3,
+        { y: "0" },
+        { y: ".5px", ease: "none", yoyo: true, repeat: -1 },
+        "step1"
+      )
         .fromTo(
           ".svg-left-hand",
           0.3,
           { y: "0" },
           { y: ".5px", ease: "none", yoyo: true, repeat: -1 }
         )
-        .fromTo(
-          ".svg-hair",
-          4,
-          { rotation: "0", transformOrigin: "50% center" },
-          { rotation: "-7deg", ease: "none", yoyo: true, repeat: -1 },
-          "face"
-        )
-        .fromTo(
-          ".svg-ear",
-          4,
-          { x: "0", transformOrigin: "50% center" },
-          { x: "-1px", ease: "none", yoyo: true, repeat: -1 },
-          "face"
-        )
-        .fromTo(
-          ".svg-eye",
-          4,
-          { rotation: "0", x: "0", y: "0", transformOrigin: "50% center" },
-          {
-            rotation: "-55deg",
-            x: "0",
-            y: "0",
-            ease: "none",
-            yoyo: true,
-            repeat: -1
-          },
-          "face"
-        )
-        .to(".svg-monitor", 0.5, {
-          fill: "#FF6666",
+        .to(".svg-monitor", 2, {
+          fill: "#515152",
           ease: "none",
           yoyo: true,
           repeat: -1
         })
-        .to(".svg-monitor", 0.5, {
-          fill: "#08fdd8",
+        .to(".svg-monitor", 2, {
+          fill: "#ffffff",
           ease: "none",
           yoyo: true,
           repeat: -1
         });
     },
-    animeRain() {
-      TweenMax.set(".svg-rain", { autoAlpha: 0 });
+    animElems() {
+      let tl = new TimelineMax({});
+      const aboutImg = document.querySelector(".about__photo");
+      const text = document.querySelector(".about__text");
+      const title = document.querySelectorAll(".title-section .word");
 
-      const dropletQuantity = 20;
+      TweenMax.set([aboutImg, text], {
+        autoAlpha: 0,
+        yPercent: 2,
+        scale: 0.95
+      });
 
-      for (var i = dropletQuantity - 1; i >= 0; i--) {
-        const pos = Math.floor(Math.random() * 100 + 1);
-        const delay = Math.random();
-        const speed = Math.random() * 0.5 + 2;
-
-        let droplet = document.createElement("div");
-        droplet.className = "droplet";
-        droplet.style.left = pos + "%";
-
-        TweenMax.to(droplet, speed, {
-          y: 420,
-          delay: delay,
-          repeat: -1,
-          ease: Linear.easeNone
-        });
-
-        document.getElementById("rain-container").appendChild(droplet);
-      }
+      tl.staggerFromTo(
+        title,
+        1.2,
+        { yPercent: 115, autoAlpha: 1 },
+        { delay: 0.4, yPercent: 0, ease: Power1.easeNone },
+        0.3
+      ).to(
+        [text, aboutImg],
+        1,
+        {
+          autoAlpha: 1,
+          yPercent: 0,
+          scale: 1,
+          ease: Power1.easeNone
+        },
+        1
+      );
     },
-    posContainerRain() {
-      const window = document
-          .querySelector(".svg-window")
-          .getBoundingClientRect(),
-        svgContainer = document
-          .querySelector(".svg-container")
-          .getBoundingClientRect(),
-        containerRain = document.querySelector("#rain-container"),
-        svg = document.querySelector(".about__svg").getBoundingClientRect();
+    leave() {
+      let tl = new TimelineMax();
+      const aboutImg = document.querySelector(".about__photo");
+      const aboutText = document.querySelector(".about__text");
+      const title = document.querySelectorAll(".title-section .word");
 
-      containerRain.style.height = `${window.height}px`;
-      containerRain.style.width = `${svgContainer.width}px`;
-      containerRain.style.top = `${(svg.height - svgContainer.height) / 2}px`;
-    },
-    handleResize() {
-      this.posContainerRain();
+      tl.to([title, aboutText, aboutImg], 1, {
+        autoAlpha: 0,
+        ease: Power1.easeNone
+      });
     }
   }
 };
@@ -191,7 +131,7 @@ export default {
   width: 1px;
   background-color: #d1d3d4;
 
-  @include md {
+  @include lg {
     height: 10px;
   }
 }
@@ -210,8 +150,9 @@ export default {
   @include xlg {
     justify-content: space-between;
   }
-  @include md {
+  @include lg {
     flex-direction: column;
+    margin-bottom: 4rem;
   }
   &__text-zone {
     display: flex;
@@ -220,14 +161,13 @@ export default {
     @include xxl {
       width: calc(60% - 15px);
     }
-    @include md {
+    @include lg {
       width: 100%;
-      margin-bottom: 3rem;
     }
   }
   &__title {
     margin-bottom: 4rem;
-    @include md {
+    @include lg {
       margin-bottom: 2rem;
     }
   }
@@ -243,6 +183,10 @@ export default {
   &__text {
     width: 100%;
     line-height: 33px;
+
+    @include lg {
+      line-height: 28px;
+    }
   }
   &__photo-wrapper {
     position: relative;
@@ -253,13 +197,13 @@ export default {
     @include xlg {
       width: calc(50% - 15px);
     }
-    @include md {
+    @include lg {
       width: 100%;
       margin: auto;
     }
   }
-  &__photo {
-    will-change: opacity, visibility;
-  }
+}
+.svg-eye {
+  opacity: 0;
 }
 </style>

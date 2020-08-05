@@ -12,7 +12,7 @@
       @input="updateValue"
       v-on="listeners"
     />
-    <label :class="labelClass" :for="id">
+    <label class="v-cursor-btn" :class="labelClass" :for="id">
       <slot></slot>
     </label>
   </div>
@@ -59,15 +59,15 @@ export default {
       return {
         ...this.$listeners,
         input: this.updateValue
-      }
+      };
     }
   },
   methods: {
     updateValue(event) {
-      this.$emit("input", event.target.value)
+      this.$emit("input", event.target.value);
     }
   }
-}
+};
 </script>
 
 <style></style>

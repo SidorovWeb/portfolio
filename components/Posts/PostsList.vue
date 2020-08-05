@@ -1,106 +1,91 @@
 <template>
-  <section class="post-list">
-    <div class="container">
-      <div class="sorting-line">
-        <div class="select">
-          <select @change="onChange($event)">
-            <option :value="this.$t('all')"> {{ this.$t("all") }} </option>
-            <option :value="this.$t('html')">{{ this.$t("html") }}</option>
-            <option value="wp">html to WP</option>
-            <option value="vue js">Vue js</option>
-          </select>
+  <div class="post-list">
+    <div class="sorting-line">
+      <v-select :selected="selected" :options="options" @select="sortByCategories" />
+      <div class="grid">
+        <div
+          class="grid__svg grid__svg--grid grid__item grid__item--grid v-cursor-btn"
+          :class="{ active: grid }"
+          @click="grid = !grid"
+        >
+          <SVgrid />
         </div>
-        <div class="grid">
-          <SVgrid
-            class="grid__svg"
-            :class="{ active: grid }"
-            @click="grid = !grid"
-          />
-          <SVGlist
-            class="grid__svg grid__list"
-            :class="{ active: !grid }"
-            @click="grid = !grid"
-          />
+        <div
+          class="grid__svg grid__list grid__item grid__item--Glist v-cursor-btn"
+          :class="{ active: !grid }"
+          @click="grid = !grid"
+        >
+          <SVGlist />
         </div>
       </div>
+    </div>
+    <simplebar class="custom-bar" data-simplebar-auto-hide="false">
       <div class="post-wrapper">
         <!-- PostPreview -->
         <postPreview
-          v-for="post in posts"
+          v-for="post in sortedProducts"
           :key="post.id"
           :post="post"
           :admin="admin"
           :grid="grid"
         />
       </div>
-    </div>
+    </simplebar>
+    <!-- resize -->
     <resize-observer @notify="handleResize" />
-  </section>
+  </div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import postPreview from "@/components/Posts/PostPreview.vue";
+import vSelect from "@/components/UI/Controls/v-select.vue";
 import SVGlist from "@/static/img/svg/list.svg";
 import SVgrid from "@/static/img/svg/grid.svg";
 export default {
-  components: { postPreview, SVGlist, SVgrid },
-  data() {
-    return {
-      grid: true
-    };
-  },
+  components: { postPreview, vSelect, SVGlist, SVgrid },
   props: {
-    posts: {
-      type: Array,
-      required: true
-    },
     admin: {
       type: Boolean,
       default: false
     }
   },
+  data() {
+    return {
+      grid: true,
+      options: [
+        { name: "Все", value: "all" },
+        { name: "Верстка", value: "html" },
+        { name: "Vue js", value: "vue js" },
+        { name: "HTML to WP", value: "html to wp" }
+      ],
+      selected: "Все",
+      sortedProducts: []
+    };
+  },
+  created() {
+    this.sortByCategories();
+  },
+  computed: {
+    ...mapGetters(["getPostsLoaded"])
+  },
   methods: {
-    onChange() {
-      let v = null;
-      const posts = this.posts;
-      const pst = document.querySelectorAll(".post-col");
-      if (
-        event.target.value.toLowerCase() == "все" ||
-        event.target.value.toLowerCase() == "all"
-      ) {
-        v = "all";
-      }
-      if (
-        event.target.value.toLowerCase() == "верстка" ||
-        event.target.value.toLowerCase() == "html"
-      ) {
-        v = "html";
-      }
-      if (event.target.value.toLowerCase() == "wp") {
-        v = "html to wp";
-      }
-      if (event.target.value.toLowerCase() == "vue js") {
-        v = "vue js";
-      }
+    sortByCategories(option) {
+      this.sortedProducts = [...this.getPostsLoaded];
 
-      posts.forEach((e, i) => {
-        const { tags } = e;
-        pst[i].style.display = "flex";
-        pst[i].style.display = "none";
-
-        pst[i].classList.remove("opacity");
-        pst[i].classList.add("opacity");
-
-        if (v == "all") {
-          pst[i].style.display = "flex";
-        }
-        tags.forEach(t => {
-          if (v == t) {
-            pst[i].style.display = "flex";
-          }
+      if (option && option.value !== "all") {
+        this.sortedProducts = this.sortedProducts.filter(product => {
+          this.selected = option.name;
+          return product.tags.includes(option.value);
         });
-      });
+      }
+      if (option && option.value === "all") {
+        this.selected = "Все";
+      }
+
+      return this.getPostsLoaded;
     },
+
     handleResize() {
       if (window.innerWidth <= 768) {
         this.grid = true;
@@ -121,48 +106,15 @@ select::-ms-expand {
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
+  margin-bottom: 2rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
 
-.select {
-  position: relative;
-  display: flex;
-  height: 2rem;
-  width: 10rem;
-  line-height: 2rem;
-  overflow: hidden;
-  border-radius: 0.25em;
-  padding: 0 0.5em;
-  border: 1px solid var(--color-pseudo-element);
-  background-color: transparent;
-  cursor: pointer;
-  & select {
-    background-color: transparent;
-    color: var(--white);
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    -ms-appearance: none;
-    appearance: none;
-    outline: 0;
-    border: 0;
-    box-shadow: none;
-    flex: 1;
-    cursor: pointer;
+  @include lg {
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0rem;
   }
-}
-.select::after {
-  content: "\25BC";
-  position: absolute;
-  top: 0;
-  right: 0;
-  padding: 0 0.5rem;
-  color: var(--home-color-text);
-  background: var(--color-pseudo-element);
-  cursor: pointer;
-  pointer-events: none;
-  -webkit-transition: 0.25s all ease;
-  -o-transition: 0.25s all ease;
-  transition: 0.25s all ease;
-  transition: all 0.3s cubic-bezier(0.02, 0.01, 0.47, 1);
 }
 .grid {
   display: flex;
@@ -174,13 +126,11 @@ select::-ms-expand {
   & > *:not(:last-child) {
     margin-right: 15px;
   }
-  &__svg {
-    width: 18px;
-    margin-right: 8px;
-    fill: var(--white);
-    opacity: 0.5;
+
+  &__item {
+    width: 22px;
+    height: 22px;
     cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.02, 0.01, 0.47, 1);
 
     &.active {
       opacity: 1;
@@ -188,21 +138,54 @@ select::-ms-expand {
     &:hover {
       opacity: 0.7;
     }
+
+    svg {
+      position: relative;
+      z-index: -1;
+    }
+  }
+  &__svg {
+    margin-right: 8px;
+    fill: var(--white);
+    opacity: 0.5;
+  }
+  &__svg--grid {
+    width: 20px;
   }
   &__list {
-    width: 22px;
+    width: 24px;
   }
 }
 /* Transition */
 .select:hover::after {
   color: var(--main-red);
 }
+
 .post-wrapper {
   display: flex;
   align-items: stretch;
   justify-content: flex-start;
   flex-wrap: wrap;
-  padding-top: 3rem;
-  margin: 0 -1rem;
+  overflow: hidden;
+  padding-top: 10px;
+}
+.post-list {
+  width: 100%;
+}
+
+.custom-bar {
+  height: calc(100vh - 67px - 96px - 60px);
+
+  @include lg {
+    height: 700px;
+  }
+
+  @include md {
+    height: 500px;
+  }
+
+  .simplebar-scrollbar:before {
+    background: var(--color-pseudo-element);
+  }
 }
 </style>
