@@ -1,19 +1,18 @@
 <template>
-  <div class="control">
+  <div class="control v-radio">
     <input
       :id="id"
       :type="type"
       class="control__input"
       :class="newClass"
+      :name="name"
       :value="value"
       v-bind="$attrs"
-      :placeholder="placeholder"
-      :autocomplete="autocomplete"
       :checked="checked"
       @input="updateValue"
       v-on="listeners"
     />
-    <label :class="labelClass" :for="id">
+    <label class="v-cursor-btn" :class="labelClass" :for="id">
       <slot></slot>
     </label>
   </div>
@@ -21,6 +20,7 @@
 
 <script>
 export default {
+  name: "v-radio",
   props: {
     id: {
       type: [String, Number],
@@ -46,17 +46,13 @@ export default {
       type: String,
       default: ""
     },
-    placeholder: {
-      type: String,
-      default: ""
-    },
     labelClass: {
       type: String,
       default: ""
     },
-    autocomplete: {
+    name: {
       type: String,
-      default: "off"
+      default: "radio"
     }
   },
   computed: {
@@ -64,15 +60,15 @@ export default {
       return {
         ...this.$listeners,
         input: this.updateValue
-      }
+      };
     }
   },
   methods: {
     updateValue(event) {
-      this.$emit("input", event.target.value)
+      this.$emit("input", event.target.value);
     }
   }
-}
+};
 </script>
 
 <style></style>

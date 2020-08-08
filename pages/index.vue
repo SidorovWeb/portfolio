@@ -1,15 +1,13 @@
 <template>
   <div class="main">
-    <!-- Loading screen -->
-    <loadingScreen v-if="screen" />
     <!-- home-page -->
     <div v-if="!screen" class="home-page">
       <!-- home-page__center -->
       <div class="home-page__center">
-        <!-- Scroller component -->
-        <scroller />
+        <!-- v-scroller -->
+        <v-scroller />
         <!-- HeroNavigation -->
-        <heroNavigation />
+        <v-hero-navigation />
       </div>
     </div>
     <!-- resize -->
@@ -18,15 +16,16 @@
 </template>
 
 <script>
-import { mapState, mapActions, mapGetters } from "vuex";
+import { mapState, mapGetters } from "vuex";
 import { TimelineMax, TweenMax, Power2, Circ, Power0 } from "gsap";
-import loadingScreen from "@/components/LoadingScreen.vue";
-import scroller from "@/components/Scroller/Scroller.vue";
-import heroNavigation from "@/components/HeroNavigation.vue";
+import vScroller from "@/components/Scroller/v-scroller.vue";
+import vHeroNavigation from "@/components/v-hero-navigation.vue";
 import "vue-resize/dist/vue-resize.css";
 
 export default {
-  components: { scroller, heroNavigation, loadingScreen },
+  name: "index",
+  layout: "default",
+  components: { vScroller, vHeroNavigation },
   head() {
     const type = "site";
     return {
@@ -62,27 +61,7 @@ export default {
     ...mapState(["screen"]),
     ...mapGetters(["getMobile", "getDesktop"])
   },
-  mounted() {
-    this.setScreen(true);
-    // this.setScreen(false); // Выключить первый экран
-
-    if (window.innerWidth > 992) {
-      this.setDescktop();
-    } else {
-      this.setMobile();
-    }
-
-    window.addEventListener("resize", () => {
-      if (window.innerWidth > 992) {
-        this.setDescktop();
-      } else {
-        this.setMobile();
-      }
-    });
-  },
   methods: {
-    ...mapActions(["setScreen", "setMobile", "setDescktop"]),
-
     handleResize() {
       if (window.innerWidth > 992) {
         const body = document.querySelector("body");

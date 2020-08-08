@@ -1,12 +1,12 @@
 <template>
-  <newPostFrom :post-edit="post" @submit="onSubmit" />
+  <v-new-post-from :post-edit="post" @submit="onSubmit" />
 </template>
 
 <script>
-import newPostFrom from "@/components/Admin/NewPostFrom.vue"
-import axios from "axios"
+import vNewPostFrom from "@/components/Admin/v-new-post-from.vue";
+import axios from "axios";
 export default {
-  components: { newPostFrom },
+  components: { vNewPostFrom },
   layout: "admin",
   asyncData(contex) {
     return axios
@@ -16,19 +16,19 @@ export default {
       .then(res => {
         return {
           post: { ...res.data, id: contex.params.postId }
-        }
+        };
       })
-      .catch(e => contex.error(e))
+      .catch(e => contex.error(e));
   },
   methods: {
     onSubmit(post) {
-      console.log(post)
+      console.log(post);
 
-      console.log("Post Editing!")
+      console.log("Post Editing!");
       this.$store.dispatch("editPost", post).then(() => {
-        this.$router.push("/admin")
-      })
+        this.$router.push("/admin");
+      });
     }
   }
-}
+};
 </script>

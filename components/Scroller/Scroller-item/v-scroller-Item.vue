@@ -1,28 +1,29 @@
 <template>
-  <section class="section main-scroller__item">
+  <section class="section main-scroller__item v-scroller-Item">
     <!-- main-scroller__wrapp -->
     <div class="main-scroller__wrapp">
-      <!-- About -->
-      <about v-if="getNameNavLink === 'about' || getMobile" />
-      <!-- portfolio -->
-      <portfolio v-if="getNameNavLink === 'portfolio' || getMobile" />
-      <!-- Skills -->
-      <skills v-if="getNameNavLink === 'skills' || getMobile" />
-      <!-- Contacts -->
-      <contacts v-if="getNameNavLink === 'contacts' || getMobile" />
+      <!-- v-about -->
+      <v-about v-if="getNameNavLink === 'about' || getMobile" />
+      <!-- v-portfolio -->
+      <v-portfolio v-if="getNameNavLink === 'portfolio' || getMobile" />
+      <!-- v-skills -->
+      <v-skills v-if="getNameNavLink === 'skills' || getMobile" />
+      <!-- v-contacts -->
+      <v-contacts v-if="getNameNavLink === 'contacts' || getMobile" />
     </div>
   </section>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
-import about from "@/components/Scroller/About.vue";
-import portfolio from "@/components/Scroller/Portfolio.vue";
-import skills from "@/components/Scroller/Skills.vue";
-import contacts from "@/components/Scroller/Contacts.vue";
+import vAbout from "@/components/Scroller/Scroller-item/v-about.vue";
+import vPortfolio from "@/components/Scroller/Scroller-item/v-portfolio.vue";
+import vSkills from "@/components/Scroller/Scroller-item/v-skills.vue";
+import vContacts from "@/components/Scroller/Scroller-item/v-contacts.vue";
 
 export default {
-  components: { about, portfolio, contacts, skills },
+  name: "v-scroller-Item",
+  components: { vAbout, vPortfolio, vContacts, vSkills },
   computed: {
     ...mapGetters(["getNameNavLink", "getMobile"])
   }

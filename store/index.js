@@ -9,7 +9,7 @@ export const state = () => ({
   firstScreen: true,
   toggleSidebar: false,
   continueRoute: true,
-  message: null,
+  messagesArray: [],
   postsLoaded: [],
   clickNavMenu: false,
   isMobile: false,
@@ -54,7 +54,10 @@ export const mutations = {
     state.continueRoute = continueRoute;
   },
   setMessage(state, message) {
-    state.message = message;
+    state.messagesArray.unshift(message);
+  },
+  setMessagesArraySplice(state) {
+    state.messagesArray.splice(state.messagesArray.length - 1, 1);
   },
   setNameNavLink(state, name) {
     state.nameLink = name;
@@ -174,16 +177,11 @@ export const actions = {
     commit("setFirstScreen", screen);
   },
   setMessage({ commit }, message) {
-    commit("setMessage", message);
-    TweenMax.set(".message", { opacity: 1 });
-    setTimeout(() => {
-      TweenMax.to(".message", 1, {
-        opacity: 0,
-        onComplete: function() {
-          commit("setMessage", null);
-        }
-      });
-    }, 4000);
+    let id = Date.now().toLocaleString();
+    commit("setMessage", { ...message, id });
+  },
+  setMessagesArraySplice({ commit }) {
+    commit("setMessagesArraySplice");
   },
   setNameNavLink({ commit }, name) {
     commit("setNameNavLink", name);
@@ -209,5 +207,6 @@ export const getters = {
   getNameNavLink: state => state.nameLink,
   getClickNavMenu: state => state.clickNavMenu,
   getMobile: state => state.isMobile,
-  getDesktop: state => state.isDesktop
+  getDesktop: state => state.isDesktop,
+  getMessages: state => state.messagesArray
 };

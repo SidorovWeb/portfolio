@@ -1,5 +1,5 @@
 <template>
-  <div class="post-col" :class="{ list: !grid }">
+  <div class="post-col v-post-preview" :class="{ list: !grid }">
     <div class="post-preview">
       <a :href="post.web" class="post-preview__img-container" target="_blank">
         <picture>
@@ -67,6 +67,7 @@
 import SVGgithub from "@/static/img/svg/github-logo.svg";
 import SVGweb from "@/static/img/svg/web.svg";
 export default {
+  name: "v-post-preview",
   components: { SVGgithub, SVGweb },
   props: {
     post: {
@@ -257,14 +258,18 @@ export default {
   &__link {
     display: flex;
     align-items: center;
-    color: var(--white);
 
     svg,
     span {
       position: relative;
       z-index: -1;
     }
+
+    span {
+      color: var(--white);
+    }
   }
+
   &__svg {
     height: 18px;
     width: 18px;

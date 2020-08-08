@@ -1,23 +1,24 @@
 <template>
-  <nav class="nav">
+  <nav class="nav v-hero-navigation">
     <!-- nav__list -->
     <ul class="nav__list">
       <li v-for="(item, name, index) in this.$t('nav')" :key="item.key" class="nav__item">
         <span class="nav__item-text v-cursor-btn" @click="clickToElement(index, name)">{{ item }}</span>
       </li>
     </ul>
-    <!-- Pointer -->
-    <pointer />
+    <!-- v-pointer -->
+    <v-pointer />
   </nav>
 </template>
 
 <script>
 import { mapActions, mapGetters } from "vuex";
 import { TweenMax } from "gsap";
-import pointer from "@/components/UI/Pointer.vue";
+import vPointer from "@/components/UI/v-pointer.vue";
 
 export default {
-  components: { pointer },
+  name: "v-hero-navigation",
+  components: { vPointer },
   mounted() {
     this.animNav();
   },

@@ -1,5 +1,5 @@
 <template>
-  <div class="control">
+  <div class="control v-textArea">
     <label>
       <slot></slot>
     </label>
@@ -17,6 +17,7 @@
 
 <script>
 export default {
+  name: "v-textArea",
   props: {
     value: {
       type: [String, Number],
@@ -40,15 +41,15 @@ export default {
       return {
         ...this.$listeners,
         input: this.updateValue
-      }
+      };
     }
   },
   methods: {
     updateValue(event) {
-      this.$emit("input", event.target.value)
+      this.$emit("input", event.target.value);
     }
   }
-}
+};
 </script>
 
 <style></style>

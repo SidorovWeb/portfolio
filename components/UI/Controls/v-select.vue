@@ -4,7 +4,7 @@
       class="v-select__title v-cursor-btn"
       @click="areOptionsVisible = !areOptionsVisible"
     >{{ selected }}</div>
-    <transition name="fade-options">
+    <transition name="v-fade-options">
       <div class="options" v-if="areOptionsVisible">
         <p
           class="options__item v-cursor-btn"
@@ -121,6 +121,10 @@ export default {
     border: solid 1px var(--color-pseudo-element);
     background-color: var(--bg-color);
     overflow: hidden;
+
+    p {
+      transition: all 0.3s cubic-bezier(0.02, 0.01, 0.47, 1);
+    }
   }
 
   & .options__item {
@@ -138,14 +142,28 @@ export default {
     background: darken(#e7e7e7, 45%);
   }
 
-  .fade-options-enter-active,
-  .fade-options-leave-active {
-    transition: all 0.3s cubic-bezier(0.02, 0.01, 0.47, 1);
-  }
-  .fade-options-enter,
-  .fade-leave-to {
-    opacity: 0;
-    transform: translateY(3rem);
+  .v-fade-options {
+    &-enter {
+      transform: translateY(3rem);
+      opacity: 0;
+    }
+    &-enter-active {
+      transition: all 0.3s cubic-bezier(0.02, 0.01, 0.47, 1);
+    }
+    &-enter-to {
+      opacity: 1;
+    }
+    &-leave {
+      opacity: 1;
+    }
+    &-leave-active {
+      transition: transform 0.6s cubic-bezier(0.02, 0.01, 0.47, 1), opacity 0.6s,
+        height 0.6s 0.2s;
+    }
+    &-leave-to {
+      transform: translateY(3rem);
+      opacity: 0;
+    }
   }
 }
 </style>

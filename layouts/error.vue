@@ -2,9 +2,7 @@
   <div class="error-404">
     <h1>This page doesn’t exist</h1>
     <p>The link you clicked on may be broken or no longer exist.</p>
-    <nuxt-link to="/" class="btn btnAccent">
-      Go back to the main page
-    </nuxt-link>
+    <nuxt-link to="/" class="btn btnAccent">Go back to the main page</nuxt-link>
     <SVGerror />
   </div>
 </template>
@@ -40,8 +38,5 @@ export default {
   a {
     border-radius: 0;
   }
-}
-.error-404 ~ .overlay-route {
-  transform: translateY(115%) !important;
 }
 </style>

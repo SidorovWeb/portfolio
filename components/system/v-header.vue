@@ -1,5 +1,5 @@
 <template>
-  <div class="header">
+  <div class="header v-header">
     <!-- SVGhome -->
     <div class="to-home header__to-home">
       <nuxt-link class="v-cursor-btn header__link" to="/">
@@ -7,8 +7,8 @@
         <!-- <span>На главную</span> -->
       </nuxt-link>
     </div>
-    <!-- AppHamburger -->
-    <AppHamburger class="header__hamburger" />
+    <!-- v-hamburger -->
+    <v-hamburger class="header__hamburger" />
     <div class="header__developer">
       <a
         href="https://vk.com/sidorovalexandern"
@@ -34,20 +34,21 @@
         </div>
       </div>
     </no-ssr>
-    <!-- toggleSwitchMode -->
-    <toggleSwitchMode />
+    <!-- v-toggle-switch-mode -->
+    <v-toggle-switch-mode />
   </div>
 </template>
 
 <script>
 import { TweenMax } from "gsap";
-import toggleSwitchMode from "@/components/UI/Controls/ToggleSwitchMode.vue";
+import vToggleSwitchMode from "@/components/UI/Controls/v-toggle-switch-mode.vue";
 import SVGhome from "@/static/img/svg/home.svg";
 import SVGflagRU from "@/static/img/svg/russia.svg";
 import SVGflagUS from "@/static/img/svg/united-states.svg";
 import SVGadmin from "@/static/img/svg/admin.svg";
 export default {
-  components: { toggleSwitchMode, SVGflagRU, SVGflagUS, SVGadmin, SVGhome },
+  name: "v-header",
+  components: { vToggleSwitchMode, SVGflagRU, SVGflagUS, SVGadmin, SVGhome },
   data() {
     return {
       lang: true,

@@ -1,5 +1,5 @@
 <template>
-  <h2 :class="title" class="h2 title-section">
+  <h2 :class="title" class="h2 title-section v-headline">
     <span class="word-container">
       <span class="word">{{ this.$t(word1) }}</span>
     </span>
@@ -11,6 +11,7 @@
 
 <script>
 export default {
+  name: "v-headline",
   props: {
     title: {
       type: String,

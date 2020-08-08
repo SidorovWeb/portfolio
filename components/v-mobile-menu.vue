@@ -1,7 +1,7 @@
 <template>
-  <div class="mmenu">
-    <!-- AppHamburger -->
-    <AppHamburger />
+  <div class="mmenu v-mobile-menu">
+    <!-- v-hamburger -->
+    <v-hamburger />
     <div class="mmenu__wrapper">
       <ul class="mmenu__list">
         <li v-for="(item, i) in this.$t('nav')" :key="item.i" class="mmenu__item">
@@ -13,7 +13,7 @@
         </li>
       </ul>
       <!-- social -->
-      <SocialButton new-class="mmenu__social" />
+      <v-social-button new-class="mmenu__social" />
     </div>
   </div>
 </template>
@@ -23,6 +23,7 @@ import { TimelineMax, TweenMax, Power0 } from "gsap";
 import ScrollToPlugin from "gsap/umd/ScrollToPlugin.js";
 
 export default {
+  name: "v-mobile-menu",
   data() {
     return {
       done: null

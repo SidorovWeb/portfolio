@@ -1,6 +1,12 @@
 <template>
-  <div class="pointer"></div>
+  <div class="pointer v-pointer"></div>
 </template>
+
+<script>
+export default {
+  name: "v-pointer"
+};
+</script>
 
 <style lang="scss">
 .pointer {

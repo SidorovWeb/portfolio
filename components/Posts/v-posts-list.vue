@@ -1,5 +1,5 @@
 <template>
-  <div class="post-list">
+  <div class="post-list v-posts-list">
     <div class="sorting-line">
       <v-select :selected="selected" :options="options" @select="sortByCategories" />
       <div class="grid">
@@ -20,16 +20,16 @@
       </div>
     </div>
     <simplebar class="custom-bar" data-simplebar-auto-hide="false">
-      <div class="post-wrapper">
-        <!-- PostPreview -->
-        <postPreview
+      <!-- v-post-preview -->
+      <transition-group name="v-transition-animate-post" class="post-wrapper">
+        <v-post-preview
           v-for="post in sortedProducts"
           :key="post.id"
           :post="post"
           :admin="admin"
           :grid="grid"
         />
-      </div>
+      </transition-group>
     </simplebar>
     <!-- resize -->
     <resize-observer @notify="handleResize" />
@@ -38,12 +38,13 @@
 
 <script>
 import { mapGetters } from "vuex";
-import postPreview from "@/components/Posts/PostPreview.vue";
+import vPostPreview from "@/components/Posts/v-post-preview.vue";
 import vSelect from "@/components/UI/Controls/v-select.vue";
 import SVGlist from "@/static/img/svg/list.svg";
 import SVgrid from "@/static/img/svg/grid.svg";
 export default {
-  components: { postPreview, vSelect, SVGlist, SVgrid },
+  name: "v-posts-list",
+  components: { vPostPreview, vSelect, SVGlist, SVgrid },
   props: {
     admin: {
       type: Boolean,
@@ -156,7 +157,7 @@ select::-ms-expand {
     width: 24px;
   }
 }
-/* Transition */
+
 .select:hover::after {
   color: var(--main-red);
 }
@@ -187,5 +188,30 @@ select::-ms-expand {
   .simplebar-scrollbar:before {
     background: var(--color-pseudo-element);
   }
+}
+
+.v-transition-animate-post-enter-active,
+.v-transition-animate-post-leave-active,
+.v-transition-animate-post-move {
+  transition: 300ms cubic-bezier(0.02, 0.01, 0.47, 1);
+  transition-property: opacity, transform;
+}
+
+.v-transition-animate-post-enter {
+  opacity: 0;
+}
+
+.v-transition-animate-post-enter-to {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.v-transition-animate-post-leave-active {
+  position: absolute;
+}
+
+.v-transition-animate-post-leave-to {
+  opacity: 0;
+  transform-origin: center top;
 }
 </style>

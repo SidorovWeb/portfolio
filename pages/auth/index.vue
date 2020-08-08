@@ -6,7 +6,7 @@
         <div class="form__item" :class="{ errorInput: $v.user.email.$error }">
           <p v-if="!$v.user.email.required" class="errorText">{{ this.$t("required") }}</p>
           <p v-if="!$v.user.email.email" class="errorText">{{ this.$t("errorTextEmail") }}</p>
-          <AppInput
+          <v-input
             v-model="user.email"
             new-class="form__input"
             class="auth__input"
@@ -22,7 +22,7 @@
             {{ this.$t("errorTextName") }}
             {{ $v.user.password.$params.minLength.min }} !
           </p>
-          <AppInput
+          <v-input
             v-model="user.password"
             new-class="form__input"
             class="auth__input"
@@ -33,7 +33,7 @@
           />
         </div>
         <div class="controls">
-          <AppButton class="form__btn">Login</AppButton>
+          <v-button class="form__btn">Login</v-button>
         </div>
       </form>
     </section>
@@ -44,7 +44,6 @@
 import { TweenMax, Power2 } from "gsap";
 import { mapState } from "vuex";
 import { required, minLength, email } from "vuelidate/lib/validators";
-// import cursor from "@/plugins/cursor.js";
 export default {
   layout: "auth",
   data() {
@@ -70,22 +69,6 @@ export default {
   computed: {
     ...mapState(["continueRoute"])
   },
-  beforeRouteEnter(to, from, next) {
-    next(() => {
-      TweenMax.set(".overlay-route", { y: "0%" });
-      TweenMax.to(".overlay-route", 0.8, {
-        delay: 0.4,
-        overwrite: 5,
-        y: "-115%",
-        ease: Power2.easeOut
-      });
-    });
-  },
-  mounted() {
-    // if (document.querySelector(".cursor")) {
-    //   cursor();
-    // }
-  },
   methods: {
     onSubmit() {
       this.$v.$touch();
@@ -108,16 +91,7 @@ export default {
   },
   beforeRouteLeave(to, from, next) {
     if (this.continueRoute) {
-      TweenMax.set(".overlay-route", { y: "115%" });
-      TweenMax.to(".overlay-route", 0.8, {
-        delay: 0.4,
-        y: "0%",
-        overwrite: 5,
-        ease: Power2.easeOut,
-        onComplete: function() {
-          next();
-        }
-      });
+      next();
     } else {
       this.$store.dispatch("setMessage", this.$t("invalid"));
       // reset

@@ -1,7 +1,7 @@
 <template>
-  <div class="main-scroller" v-if="!screen">
+  <div class="main-scroller v-scroller" v-if="!screen">
     <!-- ScrollerItem -->
-    <scrollerItem />
+    <v-scroller-Item />
     <div v-if="getDesktop" class="parallax" id="scene">
       <div
         class="parallax__element"
@@ -22,10 +22,11 @@
 import { mapState, mapGetters } from "vuex";
 import Parallax from "parallax-js";
 import { TimelineMax } from "gsap";
-import scrollerItem from "@/components/Scroller/ScrollerItem.vue";
+import vScrollerItem from "@/components/Scroller/Scroller-item/v-scroller-Item.vue";
 
 export default {
-  components: { scrollerItem },
+  name: "v-scroller",
+  components: { vScrollerItem },
   data() {
     return {
       done: false

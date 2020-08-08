@@ -1,8 +1,8 @@
 <template>
-  <div class="skills">
+  <div class="skills v-skills">
     <div class="text-zone skills__text-zone">
-      <!-- headline -->
-      <Headline title="skills__title" word1="h2Skills1" word2="h2Skills2" />
+      <!-- v-headline -->
+      <v-headline title="skills__title" word1="h2Skills1" word2="h2Skills2" />
       <!-- <div class="text-zone__text-container">
         <p class="skills__text text-zone__text">{{ this.$t("skillsText") }}</p>
       </div>-->
@@ -75,6 +75,7 @@
 import SVGMCodeDevelopment from "@/static/img/svg/code-development.svg";
 
 export default {
+  name: "v-skills",
   components: { SVGMCodeDevelopment },
   mounted() {
     this.animElems();

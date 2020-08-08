@@ -1,12 +1,12 @@
 <template>
-  <div class="contacts">
+  <div class="contacts v-contacts">
     <div class="text-zone contacts__text-zone">
-      <!-- headline -->
-      <Headline title="contacts__title" word1="h2Contacts1" word2="h2Contacts2" />
+      <!-- v-headline -->
+      <v-headline title="contacts__title" word1="h2Contacts1" word2="h2Contacts2" />
       <div class="text-zone__text-container">
         <!-- text -->
         <p class="contacts__text text-zone__text">{{ this.$t("contactsText") }}</p>
-        <p class="contacts__text">
+        <p class="contacts__text text-zone__text">
           {{this.$t("contactsFB")}}
           <a
             href="https://kwork.ru/user/sidorovalexander"
@@ -18,27 +18,33 @@
     </div>
     <div class="contacts__wrapper mauto ml100">
       <div class="contacts__form-wrapper">
-        <!-- form -->
-        <Form class="contacts__form" />
+        <!-- v-form -->
+        <v-form class="contacts__form" />
         <!-- social -->
-        <SocialButton class="contacts__social" />
+        <v-social-button class="contacts__social" />
         <!-- svg -->
         <SVGchat class="contacts__chat" />
       </div>
     </div>
+    <!-- v-notification -->
+    <v-notification :messages="getMessages" :timeOut="5000" />
   </div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import SVGchat from "@/static/img/svg/chat.svg";
 import { TweenMax } from "gsap";
 
 export default {
+  name: "v-contacts",
   components: { SVGchat },
   mounted() {
     this.animElems();
   },
   computed: {
+    ...mapGetters(["getMessages"]),
+
     clickNav() {
       return this.$store.getters.getClickNavMenu;
     }

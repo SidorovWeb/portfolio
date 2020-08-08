@@ -1,18 +1,17 @@
 <template>
-  <div class="portfolio">
-    <!-- headline -->
-    <Headline title="portfolio__title" word1="h2Portfolio1" word2="h2Portfolio2" />
+  <div class="portfolio v-portfolio">
+    <!-- v-headline -->
+    <v-headline title="portfolio__title" word1="h2Portfolio1" word2="h2Portfolio2" />
     <div class="portfolio__inner">
-      <PostsList />
+      <v-posts-list />
     </div>
   </div>
 </template>
 
 <script>
 import { TweenMax, TimelineMax } from "gsap";
-import PostsList from "../Posts/PostsList";
 export default {
-  components: { PostsList },
+  name: "v-portfolio",
   mounted() {
     this.animElems();
   },

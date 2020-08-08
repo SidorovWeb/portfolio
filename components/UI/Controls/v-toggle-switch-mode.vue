@@ -1,5 +1,5 @@
 <template>
-  <div class="theme-switch-wrapper">
+  <div class="theme-switch-wrapper v-toggle-switch-mode">
     <input id="checkbox" class="tgl tgl-light" type="checkbox" checked @change="switchTheme" />
     <label class="v-cursor-btn tgl-btn" for="checkbox"></label>
   </div>
@@ -7,6 +7,7 @@
 
 <script>
 export default {
+  name: "v-toggle-switch-mode",
   mounted() {
     this.toggleSwitch();
   },

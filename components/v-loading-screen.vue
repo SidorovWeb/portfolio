@@ -1,5 +1,5 @@
 <template>
-  <div class="div">
+  <div class="div v-loading-screen">
     <div class="loading-screen">
       <div class="loading-screen__wrapp">
         <div class="loading-screen__title h4">
@@ -22,6 +22,7 @@ import { mapState, mapActions } from "vuex";
 import Splitter from "split-html-to-chars";
 
 export default {
+  name: "v-loading-screen",
   computed: {
     ...mapState(["firstScreen"])
   },
@@ -128,20 +129,5 @@ export default {
     backface-visibility: hidden;
     visibility: hidden;
   }
-}
-
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 100%;
-  height: 100vh;
-  background-color: var(--main-red);
-  transform: translateY(115%);
-  will-change: transform;
-  backface-visibility: hidden;
-  z-index: 999;
 }
 </style>

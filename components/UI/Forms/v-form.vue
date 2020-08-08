@@ -1,10 +1,10 @@
 <template>
-  <div>
+  <div class="v-form">
     <form class="form" @submit.prevent="onSubmit">
       <!-- radio-line -->
       <div class="radio-line form__radio-line">
         <span class="radio-line__text">{{ this.$t("send") }}:</span>
-        <AppRadio
+        <v-radio
           id="form__check--email"
           type="radio"
           name="social"
@@ -13,8 +13,8 @@
           value="email"
           checked
           @click="onChange($event.target.value)"
-        >Email</AppRadio>
-        <AppRadio
+        >Email</v-radio>
+        <v-radio
           id="form__check--telegram"
           type="radio"
           name="social"
@@ -22,7 +22,7 @@
           new-class="radio-line__input"
           value="telegram"
           @click="onChange($event.target.value)"
-        >Telegram</AppRadio>
+        >Telegram</v-radio>
       </div>
       <!-- form.name -->
       <div class="form__item" :class="{ errorInput: $v.form.name.$error }">
@@ -31,12 +31,12 @@
           {{ this.$t("errorTextName") }}
           {{ $v.form.name.$params.minLength.min }} !
         </p>
-        <AppInput
+        <v-input
           v-model="form.name"
           new-class="form__input"
           :class="{ error: $v.form.name.$error }"
           autocomplete="on"
-          :placeholder="this.$t('plhName')"
+          :placeholder="'*' + this.$t('plhName')"
           @change="$v.form.name.$touch()"
         />
       </div>
@@ -47,12 +47,12 @@
           {{ this.$t("errorTextName") }}
           {{ $v.form.userName.$params.minLength.min }} !
         </p>
-        <AppInput
+        <v-input
           v-model="form.userName"
           new-class="form__input"
           :class="{ error: $v.form.userName.$error }"
           autocomplete="on"
-          :placeholder="this.$t('plhTelegram')"
+          :placeholder="'*' + this.$t('plhTelegram')"
           @change="$v.form.userName.$touch()"
         />
       </div>
@@ -60,12 +60,12 @@
       <div v-if="form.check" class="form__item" :class="{ errorInput: $v.form.email.$error }">
         <p v-if="!$v.form.email.required" class="errorText">{{ this.$t("required") }}</p>
         <p v-if="!$v.form.email.email" class="errorText">{{ this.$t("errorTextEmail") }}</p>
-        <AppInput
+        <v-input
           v-model="form.email"
           new-class="form__input"
           :class="{ error: $v.form.email.$error }"
           autocomplete="on"
-          :placeholder="this.$t('plhEmail')"
+          :placeholder="'*' + this.$t('plhEmail')"
           @change="$v.form.email.$touch()"
         />
       </div>
@@ -76,25 +76,27 @@
           {{ this.$t("errorTextText") }}
           {{ $v.form.text.$params.minLength.min }} !
         </p>
-        <AppTextArea
+        <v-textArea
           :key="form.check"
           v-model="form.text"
           new-class="form__textarea"
           :class="{ error: $v.form.text.$error }"
-          :placeholder="this.$t('plhText')"
+          :placeholder="'*' + this.$t('plhText')"
           @change="$v.form.text.$touch()"
         />
       </div>
-      <!-- button -->
-      <AppButton class="form__btn" btnClass="btnAccent">{{ this.$t("send") }}</AppButton>
+      <!-- v-button -->
+      <v-button class="form__btn" btnClass="btnAccent">{{ this.$t("send") }}</v-button>
     </form>
   </div>
 </template>
 
 <script>
+import { mapActions } from "vuex";
 import axios from "axios";
 import { required, minLength, email } from "vuelidate/lib/validators";
 export default {
+  name: "v-form",
   data() {
     return {
       form: {
@@ -145,6 +147,8 @@ export default {
     }
   },
   methods: {
+    ...mapActions(["setMessage"]),
+
     onChange(event) {
       if (this.form.check && event == "email") return false;
       if (!this.form.check && event == "telegram") return false;
@@ -187,11 +191,20 @@ export default {
               console.log(e);
             });
         }
-        this.$store.dispatch("setMessage", this.$t("message"));
+
+        this.setMessage({
+          name: this.$t("message"),
+          icon: "check_circle"
+        });
         // DONE
         this.form.check = null;
         this.reset();
+        return;
       }
+      this.setMessage({
+        name: this.$t("messageError"),
+        icon: "error"
+      });
     },
     reset() {
       this.form.name = "";
@@ -305,6 +318,8 @@ export default {
       opacity: 1;
       letter-spacing: $mainLetterSpacing;
       font-size: 0.9rem;
+      font-family: $mainFont;
+      font-weight: $mainFontWeight;
     }
   }
   &__btn {

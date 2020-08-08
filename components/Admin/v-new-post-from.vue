@@ -1,34 +1,18 @@
 <template>
-  <section class="new-post">
+  <section class="new-post v-new-post-from">
     <div class="container">
       <form @submit.prevent="onSubmit">
-        <AppInput v-model="post.title" class="new-post__line">
-          Title
-        </AppInput>
-        <AppInput v-model="post.webp" class="new-post__line">
-          Img webp
-        </AppInput>
-        <AppInput v-model="post.img" class="new-post__line">
-          Img jpg
-        </AppInput>
-        <AppInput v-model="post.git" class="new-post__line">
-          gitHub
-        </AppInput>
-        <AppInput v-model="post.web" class="new-post__line">
-          Web
-        </AppInput>
-        <AppInput v-model="post.tags" class="new-post__line">
-          Tags(html,css)
-        </AppInput>
-        <AppInput v-model="post.certificate" class="new-post__line">
-          Сertificate
-        </AppInput>
+        <v-input v-model="post.title" class="new-post__line">Title</v-input>
+        <v-input v-model="post.webp" class="new-post__line">Img webp</v-input>
+        <v-input v-model="post.img" class="new-post__line">Img jpg</v-input>
+        <v-input v-model="post.git" class="new-post__line">gitHub</v-input>
+        <v-input v-model="post.web" class="new-post__line">Web</v-input>
+        <v-input v-model="post.tags" class="new-post__line">Tags(html,css)</v-input>
+        <v-input v-model="post.certificate" class="new-post__line">Сertificate</v-input>
         <!-- buttons -->
         <div class="controls">
-          <div class="btn btnDanger" @click="cancel">
-            Cancel
-          </div>
-          <AppButton>Save</AppButton>
+          <div class="btn btnDanger" @click="cancel">Cancel</div>
+          <v-button>Save</v-button>
         </div>
       </form>
     </div>
@@ -37,6 +21,7 @@
 
 <script>
 export default {
+  name: "v-new-post-from",
   props: {
     postEdit: {
       type: Object,

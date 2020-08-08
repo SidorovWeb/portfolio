@@ -8,12 +8,8 @@
     </div>
     <!-- nuxt -->
     <nuxt />
-    <!-- cursor -->
-    <!-- <div class="cursor"></div> -->
     <!-- message -->
     <Message v-if="message" :message="message" mes-class="error" />
-    <!-- Overlay -->
-    <Overlay />
   </div>
 </template>
 

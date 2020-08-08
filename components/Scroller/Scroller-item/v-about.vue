@@ -1,8 +1,8 @@
 <template>
-  <div class="about">
+  <div class="about v-about">
     <div class="about__text-zone">
-      <!-- headline -->
-      <Headline title="about__title" word1="h2About1" word2="h2About2" />
+      <!-- v-headline -->
+      <v-headline title="about__title" word1="h2About1" word2="h2About2" />
       <div class="about__text-container">
         <!-- text  -->
         <p class="about__text text-zone__text">{{ this.$t("aboutText") }}</p>
@@ -21,6 +21,7 @@ import SVGSmileyFace from "@/static/img/svg/focused-working.svg";
 import { TweenMax, TimelineMax } from "gsap";
 
 export default {
+  name: "v-about",
   components: { SVGSmileyFace },
   mounted() {
     this.animeAboutePhoto();

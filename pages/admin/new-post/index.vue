@@ -1,18 +1,18 @@
 <template>
-  <newPostFrom @submit="onSubmit" />
+  <v-new-post-from @submit="onSubmit" />
 </template>
 
 <script>
-import newPostFrom from "@/components/Admin/NewPostFrom.vue"
+import vNewPostFrom from "@/components/Admin/v-new-post-from.vue";
 export default {
   layout: "admin",
-  components: { newPostFrom },
+  components: { vNewPostFrom },
   methods: {
     onSubmit(post) {
       this.$store.dispatch("addPost", post).then(() => {
-        this.$router.push("/admin/")
-      })
+        this.$router.push("/admin/");
+      });
     }
   }
-}
+};
 </script>

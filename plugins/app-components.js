@@ -1,23 +1,20 @@
 import Vue from "vue";
 
 // Controls
-import Message from "@/components/UI/Message.vue";
-import PostsList from "@/components/Posts/PostsList.vue";
+import vNotification from "@/components/UI/v-notification.vue";
+import vPostsList from "@/components/Posts/v-posts-list.vue";
 
 // UI
-import AppHamburger from "@/components/UI/Controls/Hamburger.vue";
-import AppButton from "@/components/UI/Controls/Button.vue";
-import AppInput from "@/components/UI/Controls/Input.vue";
-import AppRadio from "@/components/UI/Controls/Radio.vue";
-import AppTextArea from "@/components/UI/Controls/TextArea.vue";
-import Form from "@/components/UI/Forms/Form.vue";
-import SocialButton from "@/components/UI/SocialButton.vue";
+import vHamburger from "@/components/UI/Controls/v-hamburger.vue";
+import vButton from "@/components/UI/Controls/v-button.vue";
+import vInput from "@/components/UI/Controls/v-input.vue";
+import vRadio from "@/components/UI/Controls/v-radio.vue";
+import vTextArea from "@/components/UI/Controls/v-textArea.vue";
+import vForm from "@/components/UI/Forms/v-form.vue";
+import vSocialButton from "@/components/UI/v-social-button.vue";
 
 // Headline
-import Headline from "@/components/Headline.vue";
-
-// Overlay-route
-import Overlay from "@/components/Overlay.vue";
+import vHeadline from "@/components/v-headline.vue";
 
 // Plugins
 import Vuelidate from "vuelidate";
@@ -26,23 +23,20 @@ import simplebar from "simplebar-vue";
 import "simplebar/dist/simplebar.min.css";
 
 // UI
-Vue.component("Message", Message);
-Vue.component("PostsList", PostsList);
-Vue.component("Form", Form);
-Vue.component("SocialButton", SocialButton);
+Vue.component("v-notification", vNotification);
+Vue.component("v-posts-list", vPostsList);
+Vue.component("v-form", vForm);
+Vue.component("v-social-button", vSocialButton);
 
 //  Controls
-Vue.component("AppHamburger", AppHamburger);
-Vue.component("AppButton", AppButton);
-Vue.component("AppInput", AppInput);
-Vue.component("AppRadio", AppRadio);
-Vue.component("AppTextArea", AppTextArea);
+Vue.component("v-hamburger", vHamburger);
+Vue.component("v-button", vButton);
+Vue.component("v-input", vInput);
+Vue.component("v-radio", vRadio);
+Vue.component("v-textArea", vTextArea);
 
-// Headline
-Vue.component("Headline", Headline);
-
-// Overlay-route
-Vue.component("Overlay", Overlay);
+// v-headline
+Vue.component("v-headline", vHeadline);
 
 // Plugins
 Vue.use(Vuelidate);

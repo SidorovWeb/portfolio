@@ -1,18 +1,19 @@
 <template>
-  <div class="control">
+  <div class="control v-input">
     <input
       :id="id"
       :type="type"
       class="control__input"
       :class="newClass"
-      :name="name"
       :value="value"
       v-bind="$attrs"
+      :placeholder="placeholder"
+      :autocomplete="autocomplete"
       :checked="checked"
       @input="updateValue"
       v-on="listeners"
     />
-    <label class="v-cursor-btn" :class="labelClass" :for="id">
+    <label :class="labelClass" :for="id">
       <slot></slot>
     </label>
   </div>
@@ -20,6 +21,7 @@
 
 <script>
 export default {
+  name: "v-input",
   props: {
     id: {
       type: [String, Number],
@@ -45,13 +47,17 @@ export default {
       type: String,
       default: ""
     },
+    placeholder: {
+      type: String,
+      default: ""
+    },
     labelClass: {
       type: String,
       default: ""
     },
-    name: {
+    autocomplete: {
       type: String,
-      default: "radio"
+      default: "off"
     }
   },
   computed: {

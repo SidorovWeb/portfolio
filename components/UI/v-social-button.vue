@@ -1,5 +1,5 @@
 <template>
-  <div class="social" :class="newClass">
+  <div class="social v-social-button" :class="newClass">
     <div class="social__line">
       <!-- SVGvk -->
       <a
@@ -42,6 +42,7 @@ import SVGvk from "@/static/img/svg/vk.svg";
 import SVGtelegram from "@/static/img/svg/telegram.svg";
 import SVGgithub from "@/static/img/svg/github-logo.svg";
 export default {
+  name: "v-social-button",
   components: { SVGvk, SVGtelegram, SVGgithub },
   props: {
     newClass: {

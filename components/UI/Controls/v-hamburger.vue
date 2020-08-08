@@ -1,11 +1,16 @@
 <template>
-  <div class="v-cursor-btn" :class="['hamburger', { 'hamburger--open': open }]" @click="toggleNav">
+  <div
+    class="v-cursor-btn v-hamburger"
+    :class="['hamburger', { 'hamburger--open': open }]"
+    @click="toggleNav"
+  >
     <span class="hamburger__span"></span>
   </div>
 </template>
 
 <script>
 export default {
+  name: "v-hamburger",
   computed: {
     open() {
       return this.$store.state.toggleSidebar;
