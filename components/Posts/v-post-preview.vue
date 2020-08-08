@@ -121,6 +121,7 @@ export default {
   }
 
   @include md {
+    padding: 0;
     max-width: 100%;
   }
 
@@ -192,7 +193,7 @@ export default {
     object-fit: cover;
     cursor: pointer;
     transform: scale(1);
-    transition: transform 0.7s ease-in;
+    transition: transform 0.7s ease;
 
     @media screen and (min-width: 2400px) {
       height: 250px;

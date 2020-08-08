@@ -92,8 +92,7 @@ export default {
 
       tl.to(header, duration, {
         delay: 1,
-        autoAlpha: 1,
-        ease: Power2.inOut
+        autoAlpha: 1
       });
     }
   }

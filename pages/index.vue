@@ -1,5 +1,7 @@
 <template>
   <div class="main">
+    <!-- v-loading-screen -->
+    <v-loading-screen v-if="screen" />
     <!-- home-page -->
     <div v-if="!screen" class="home-page">
       <!-- home-page__center -->
@@ -16,16 +18,17 @@
 </template>
 
 <script>
-import { mapState, mapGetters } from "vuex";
+import { mapState, mapActions, mapGetters } from "vuex";
 import { TimelineMax, TweenMax, Power2, Circ, Power0 } from "gsap";
 import vScroller from "@/components/Scroller/v-scroller.vue";
 import vHeroNavigation from "@/components/v-hero-navigation.vue";
+import vLoadingScreen from "@/components/v-loading-screen.vue";
 import "vue-resize/dist/vue-resize.css";
 
 export default {
   name: "index",
   layout: "default",
-  components: { vScroller, vHeroNavigation },
+  components: { vScroller, vHeroNavigation, vLoadingScreen },
   head() {
     const type = "site";
     return {
@@ -57,11 +60,18 @@ export default {
       body.classList.add("main-page");
     });
   },
+  mounted() {
+    this.setScreen(true);
+
+    // this.setScreen(false); // Выключить первый экран
+  },
   computed: {
     ...mapState(["screen"]),
     ...mapGetters(["getMobile", "getDesktop"])
   },
   methods: {
+    ...mapActions(["setScreen"]),
+
     handleResize() {
       if (window.innerWidth > 992) {
         const body = document.querySelector("body");

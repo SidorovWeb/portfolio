@@ -44,14 +44,14 @@ export default {
       let tl = new TimelineMax();
       tl.fromTo(
         ".svg-right-hand",
-        0.3,
+        0.15,
         { y: "0" },
         { y: ".5px", ease: "none", yoyo: true, repeat: -1 },
         "step1"
       )
         .fromTo(
           ".svg-left-hand",
-          0.3,
+          0.15,
           { y: "0" },
           { y: ".5px", ease: "none", yoyo: true, repeat: -1 }
         )
@@ -82,18 +82,17 @@ export default {
 
       tl.staggerFromTo(
         title,
-        1.2,
+        1,
         { yPercent: 115, autoAlpha: 1 },
-        { delay: 0.4, yPercent: 0, ease: Power1.easeNone },
+        { delay: 0.4, yPercent: 0 },
         0.3
       ).to(
         [text, aboutImg],
-        1,
+        0.8,
         {
           autoAlpha: 1,
           yPercent: 0,
-          scale: 1,
-          ease: Power1.easeNone
+          scale: 1
         },
         1
       );
@@ -104,9 +103,8 @@ export default {
       const aboutText = document.querySelector(".about__text");
       const title = document.querySelectorAll(".title-section .word");
 
-      tl.to([title, aboutText, aboutImg], 1, {
-        autoAlpha: 0,
-        ease: Power1.easeNone
+      tl.to([title, aboutText, aboutImg], 0.5, {
+        autoAlpha: 0
       });
     }
   }

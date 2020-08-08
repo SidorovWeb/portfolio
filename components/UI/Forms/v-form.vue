@@ -273,12 +273,12 @@ export default {
       background-color: #a6a6a6;
       border-radius: 50%;
       margin-left: -25px;
-      transition: all 0.3s;
+      transition: all 0.3s ease;
     }
     &:checked + label:before {
       position: absolute;
       background-color: var(--main-red);
-      transition: all 0.3s;
+      transition: all 0.3s ease;
     }
     &:focus + label:before {
       box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.12);

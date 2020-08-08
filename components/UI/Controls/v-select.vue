@@ -100,7 +100,7 @@ export default {
       background: var(--color-pseudo-element);
       cursor: pointer;
       pointer-events: none;
-      transition: all 0.3s cubic-bezier(0.02, 0.01, 0.47, 1);
+      transition: all 0.3s ease;
     }
 
     &:hover {
@@ -123,7 +123,7 @@ export default {
     overflow: hidden;
 
     p {
-      transition: all 0.3s cubic-bezier(0.02, 0.01, 0.47, 1);
+      transition: all 0.3s ease;
     }
   }
 
@@ -131,7 +131,7 @@ export default {
     height: 3rem;
     line-height: 3rem;
     padding: 0 0.5em;
-    transition: all 0.3s cubic-bezier(0.02, 0.01, 0.47, 1);
+    transition: all 0.3s ease;
 
     &.active {
       background: var(--color-pseudo-element);
@@ -148,7 +148,7 @@ export default {
       opacity: 0;
     }
     &-enter-active {
-      transition: all 0.3s cubic-bezier(0.02, 0.01, 0.47, 1);
+      transition: all 0.3s ease;
     }
     &-enter-to {
       opacity: 1;
@@ -157,8 +157,7 @@ export default {
       opacity: 1;
     }
     &-leave-active {
-      transition: transform 0.6s cubic-bezier(0.02, 0.01, 0.47, 1), opacity 0.6s,
-        height 0.6s 0.2s;
+      transition: transform 0.6s ease, opacity 0.6s, height 0.6s 0.2s;
     }
     &-leave-to {
       transform: translateY(3rem);

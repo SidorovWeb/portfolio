@@ -81,6 +81,8 @@ export default {
     color: var(--main-red);
     text-transform: uppercase;
     font-size: 1.4rem;
+    font-weight: bold;
+    font-family: "PlayfairDisplayBold";
   }
 }
 </style>

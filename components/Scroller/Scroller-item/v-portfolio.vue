@@ -46,31 +46,29 @@ export default {
 
       tl.staggerFromTo(
         title,
-        1.2,
+        1,
         { yPercent: 115, autoAlpha: 1 },
-        { delay: 0.4, yPercent: 0, ease: Power1.easeNone },
-        0.3
+        { delay: 0.4, yPercent: 0 },
+        0.15
       );
       tl.staggerTo(
         postItem,
-        1,
+        0.8,
         {
           autoAlpha: 1,
           yPercent: 0,
-          scale: 1,
-          ease: Power1.easeNone
+          scale: 1
         },
-        0.3,
+        0.15,
         1
       );
       tl.to(
         [select, grid, scrollbar],
-        1,
+        0.8,
         {
           autoAlpha: 1,
           yPercent: 0,
-          scale: 1,
-          ease: Power1.easeNone
+          scale: 1
         },
         2
       );
@@ -85,9 +83,8 @@ export default {
         ".simplebar-track.simplebar-vertical"
       );
 
-      tl.to([title, postItem, select, grid, scrollbar], 1, {
-        autoAlpha: 0,
-        ease: Power1.easeNone
+      tl.to([title, postItem, select, grid, scrollbar], 0.5, {
+        autoAlpha: 0
       });
     }
   }

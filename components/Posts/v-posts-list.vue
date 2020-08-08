@@ -167,8 +167,9 @@ select::-ms-expand {
   align-items: stretch;
   justify-content: flex-start;
   flex-wrap: wrap;
-  overflow: hidden;
   padding-top: 10px;
+
+  overflow: hidden;
 }
 .post-list {
   width: 100%;
@@ -189,11 +190,14 @@ select::-ms-expand {
     background: var(--color-pseudo-element);
   }
 }
+.simplebar-content-wrapper {
+  border-radius: 5px;
+}
 
 .v-transition-animate-post-enter-active,
 .v-transition-animate-post-leave-active,
 .v-transition-animate-post-move {
-  transition: 300ms cubic-bezier(0.02, 0.01, 0.47, 1);
+  transition: 300ms ease;
   transition-property: opacity, transform;
 }
 

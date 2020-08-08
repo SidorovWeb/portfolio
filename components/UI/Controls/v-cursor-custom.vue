@@ -40,7 +40,7 @@ export default {
         div.style.zIndex = cursorStyle.zIndex;
         div.style.mixBlendMode = cursorStyle.mixBlendMode;
         div.style.position = "fixed";
-
+        div.classList.add("border-50"); // fix firefox
         tlDiv.fromTo(
           div,
           0.5,
@@ -58,6 +58,7 @@ export default {
         document.body.append(div);
         setTimeout(() => {
           div.remove();
+          div.classList.remove("border-50"); // fix firefox
         }, 1000);
       });
 
@@ -94,14 +95,13 @@ export default {
     display: none;
   }
 }
-
 .cursor-trans {
-  transition: transform 0.3s ease-in-out;
+  transition: transform 0.3s ease;
 }
 
 .cursor-hover {
   transform: scale(1.5);
-  transition: transform 0.4s ease-in-out;
+  transition: transform 0.4s ease;
 }
 
 body:not(.admin-page) {
@@ -110,5 +110,9 @@ body:not(.admin-page) {
   @media screen and (max-width: 1024px) {
     cursor: auto;
   }
+}
+
+.border-50 {
+  border-radius: 50% !important;
 }
 </style>

@@ -40,7 +40,7 @@ export default {
     height: 2px;
     width: inherit;
     background-color: var(--white);
-    transition: all 0.3s;
+    transition: all 0.3s ease;
     margin-top: 10px;
     &:before {
       content: "";
@@ -48,7 +48,7 @@ export default {
       height: 2px;
       width: inherit;
       background-color: var(--white);
-      transition: all 0.3s;
+      transition: all 0.3s ease;
       top: -7px;
     }
     &:after {
@@ -58,7 +58,7 @@ export default {
       height: 2px;
       width: inherit;
       background-color: var(--white);
-      transition: all 0.3s;
+      transition: all 0.3s ease;
     }
   }
   &--open {

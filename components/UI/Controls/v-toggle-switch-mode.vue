@@ -103,7 +103,7 @@ export default {
     background: #636363;
     border-radius: 2em;
     padding: 2px;
-    transition: all 0.4s ease;
+    transition: all 0.3s ease;
     &:after {
       border-radius: 50%;
       background: #fff;

@@ -51,13 +51,12 @@ export default {
 
           TweenMax.to(pointer, 0.7, {
             y: liheight * index,
-            ease: Power1.easeOut,
             onComplete: () => {
               this.setClickNavMenu(false);
               this.once = true;
             }
           });
-        }, 1000);
+        }, 500);
       }
     },
 
@@ -80,13 +79,13 @@ export default {
           pointer,
           duration,
           { height: 0 },
-          { delay: 0.5, height: 188, ease: Power2.inOut },
+          { delay: 0.5, height: 188 },
           "first"
         )
         .staggerFromTo(
           navItem,
           duration,
-          { autoAlpha: 0, xPercent: 150 },
+          { autoAlpha: 0, xPercent: 250 },
           {
             autoAlpha: 1,
             xPercent: 0,
@@ -97,8 +96,7 @@ export default {
         )
         .to(pointer, durPointer, {
           top: 8.5,
-          height: 26,
-          ease: Power2.inOut
+          height: 26
         })
         .set(pointer, { bottom: "initial" });
     }
@@ -139,7 +137,7 @@ export default {
     justify-content: flex-end;
     overflow: hidden;
     cursor: pointer;
-    transition: opacity 0.3s ease-in;
+    transition: opacity 0.3s ease;
     &:hover {
       opacity: 0.8;
     }

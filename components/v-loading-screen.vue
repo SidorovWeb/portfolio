@@ -1,14 +1,8 @@
 <template>
-  <div class="div v-loading-screen">
-    <div class="loading-screen">
-      <div class="loading-screen__wrapp">
-        <div class="loading-screen__title h4">
-          <span class="mask-text mask-text--1 js-splitme">
-            {{
-            this.$t("dev")
-            }}
-          </span>
-        </div>
+  <div class="v-loading-screen">
+    <div class="v-loading-screen__wrapp">
+      <div class="v-loading-screen__title h4">
+        <div class="mask-text mask-text--1 js-splitme">Сидоров Александр</div>
       </div>
     </div>
     <!-- resize -->
@@ -18,19 +12,23 @@
 
 <script>
 import { TimelineMax, TweenMax, Power0, Power1 } from "gsap";
-import { mapState, mapActions } from "vuex";
+import { mapState, mapActions, mapGetters } from "vuex";
 import Splitter from "split-html-to-chars";
 
 export default {
   name: "v-loading-screen",
   computed: {
-    ...mapState(["firstScreen"])
+    ...mapState(["firstScreen"]),
+    ...mapGetters(["getMobile", "getDesktop"])
   },
   mounted() {
     if (this.firstScreen) {
       this.animLoadScreen();
     } else {
       this.screenFirst();
+    }
+    if (this.getMobile) {
+      this.handleResize();
     }
   },
   methods: {
@@ -65,11 +63,10 @@ export default {
           x: 0,
           ease: Power1.easeOut
         },
-        0.2,
-        0
+        0.15
       ).fromTo(
-        ".loading-screen__wrapp",
-        0.5,
+        ".v-loading-screen__wrapp",
+        1,
         { autoAlpha: 1 },
         { autoAlpha: 0, y: -20, ease: Power0.easeNone }
       );
@@ -88,23 +85,23 @@ export default {
 
 <style lang="scss">
 @import "@/assets/scss/mixins/mixins";
-.loading-screen {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+.v-loading-screen {
   height: 100vh;
   height: calc(var(--vh, 1vh) * 100);
   width: 100%;
-  z-index: 999;
+  z-index: 998;
   display: flex;
   align-items: center;
-  justify-content: center;
   background-color: var(--bg-color-rgba);
+  overflow: hidden;
 
   @include lg {
     background-color: transparent;
+  }
+
+  &__wrapp {
+    width: 100%;
+    text-align: center;
   }
 
   &__title {

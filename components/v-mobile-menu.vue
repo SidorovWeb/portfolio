@@ -47,8 +47,7 @@ export default {
           ".mmenu",
           0.5,
           {
-            xPercent: x,
-            ease: Power0.easeNone
+            xPercent: x
           },
           "mmenu"
         )
@@ -57,8 +56,7 @@ export default {
           0.3,
           {
             delay: delay,
-            xPercent: x,
-            ease: Power0.easeNone
+            xPercent: x
           },
           stagger,
           "mmenu"
@@ -68,8 +66,7 @@ export default {
           0.3,
           {
             delay: delay,
-            yPercent: y,
-            ease: Power0.easeNone
+            yPercent: y
           },
           stagger,
           "mmenu"
@@ -95,8 +92,7 @@ export default {
       TweenMax.to(window, 1, {
         scrollTo: { y: `.${i}`, offsetY: 70, autoKill: true },
         overwrite: 5,
-        delay: 0.51,
-        ease: Power0.easeNone
+        delay: 0.51
       });
     },
     toggleClass() {
@@ -201,6 +197,8 @@ export default {
     }
     & .social__link--fb {
       color: var(--white);
+      font-weight: bold;
+      font-family: "PlayfairDisplayBold";
     }
   }
 }

@@ -96,7 +96,6 @@ export default {
     animElems() {
       let tl = new TimelineMax({});
       const title = document.querySelectorAll(".title-section .word");
-      // const text = document.querySelector(".skills__text");
       const skillsLine = document.querySelectorAll(".skills__tag");
       const svg = document.querySelector(".skills__svg");
 
@@ -108,30 +107,28 @@ export default {
 
       tl.staggerFromTo(
         title,
-        1.2,
+        1,
         { yPercent: 115, autoAlpha: 1 },
-        { delay: 0.4, yPercent: 0, ease: Power1.easeNone },
+        { delay: 0.4, yPercent: 0 },
         0.3
       );
       tl.staggerTo(
         skillsLine,
-        1,
+        0.8,
         {
           autoAlpha: 1,
           yPercent: 0,
-          scale: 1,
-          ease: Power1.easeNone
+          scale: 1
         },
-        0.3,
+        0.15,
         1
       ).to(
         svg,
-        1,
+        0.8,
         {
           autoAlpha: 0.1,
           yPercent: 0,
-          scale: 1,
-          ease: Power1.easeNone
+          scale: 1
         },
         1.5
       );
@@ -139,13 +136,11 @@ export default {
     leave() {
       let tl = new TimelineMax();
       const title = document.querySelectorAll(".title-section .word");
-      // const text = document.querySelector(".skills__text");
       const skillsLine = document.querySelectorAll(".skills__tag");
       const svg = document.querySelector(".skills__svg");
 
-      tl.to([title, skillsLine, svg], 1, {
-        autoAlpha: 0,
-        ease: Power1.easeNone
+      tl.to([title, skillsLine, svg], 0.5, {
+        autoAlpha: 0
       });
     }
   }

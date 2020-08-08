@@ -76,8 +76,7 @@ export default {
         {
           yPercent: 0,
           autoAlpha: 1,
-          scale: 1,
-          ease: Power1.easeNone
+          scale: 1
         },
         0.3
       );

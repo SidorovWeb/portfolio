@@ -73,31 +73,29 @@ export default {
 
       tl.staggerFromTo(
         title,
-        1.2,
+        1,
         { yPercent: 115, autoAlpha: 1 },
-        { delay: 0.4, yPercent: 0, ease: Power1.easeNone },
+        { delay: 0.4, yPercent: 0 },
         0.3
       );
       tl.staggerTo(
         [text, form, social],
-        1,
+        0.8,
         {
           autoAlpha: 1,
           yPercent: 0,
-          scale: 1,
-          ease: Power1.easeNone
+          scale: 1
         },
         0.3,
         1
       );
       tl.to(
         svg,
-        1,
+        0.8,
         {
           autoAlpha: 0.1,
           yPercent: 0,
-          scale: 1,
-          ease: Power1.easeNone
+          scale: 1
         },
         1.5
       );
@@ -110,9 +108,8 @@ export default {
       const social = document.querySelectorAll(".contacts__social");
       const svg = document.querySelectorAll(".contacts__chat");
 
-      tl.to([title, text, form, social, svg], 1, {
-        autoAlpha: 0,
-        ease: Power1.easeNone
+      tl.to([title, text, form, social, svg], 0.5, {
+        autoAlpha: 0
       });
     }
   }
@@ -181,6 +178,8 @@ export default {
   &__fb {
     color: var(--main-red);
     text-transform: uppercase;
+    font-weight: bold;
+    font-family: "PlayfairDisplayBold";
   }
 }
 </style>
