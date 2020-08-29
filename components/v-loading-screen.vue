@@ -56,6 +56,7 @@ export default {
           x: 50
         },
         {
+          delay: 0.4,
           scaleW: 0.1,
           autoAlpha: 1,
           webKitFilter: "blur(0px)",

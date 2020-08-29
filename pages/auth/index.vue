@@ -1,5 +1,5 @@
 <template>
-  <no-ssr>
+  <client-only>
     <section class="auth">
       <form class="auth__form" @submit.prevent="onSubmit">
         <!-- form.name -->
@@ -37,7 +37,7 @@
         </div>
       </form>
     </section>
-  </no-ssr>
+  </client-only>
 </template>
 
 <script>

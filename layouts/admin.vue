@@ -1,5 +1,5 @@
 <template>
-  <no-ssr>
+  <client-only>
     <div class="wrapper admin">
       <div class="admin-header">
         <nuxt-link to="/admin" class="link linkWhite ">
@@ -17,7 +17,7 @@
         </div>
       </div>
     </div>
-  </no-ssr>
+  </client-only>
 </template>
 
 <script>

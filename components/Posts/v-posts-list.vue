@@ -197,8 +197,10 @@ select::-ms-expand {
 .v-transition-animate-post-enter-active,
 .v-transition-animate-post-leave-active,
 .v-transition-animate-post-move {
-  transition: 300ms ease;
-  transition-property: opacity, transform;
+  transition-property: opacity transform;
+  transition-duration: 150ms;
+  transition-timing-function: ease;
+  z-index: 1;
 }
 
 .v-transition-animate-post-enter {
@@ -212,6 +214,7 @@ select::-ms-expand {
 
 .v-transition-animate-post-leave-active {
   position: absolute;
+  z-index: -1;
 }
 
 .v-transition-animate-post-leave-to {

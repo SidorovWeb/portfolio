@@ -22,7 +22,6 @@
         <SVGadmin />
       </nuxt-link>
     </div>-->
-    <no-ssr>
       <div class="flags header__flags">
         <!-- SVGflagUS -->
         <div v-if="lang" class="v-cursor-btn flag" @click="changeLanguage('us')">
@@ -33,7 +32,6 @@
           <SVGflagRU />
         </div>
       </div>
-    </no-ssr>
     <!-- v-toggle-switch-mode -->
     <v-toggle-switch-mode />
   </div>

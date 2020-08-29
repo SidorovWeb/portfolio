@@ -323,7 +323,7 @@ export default {
     }
   }
   &__btn {
-    border-radius: 0;
+    border-radius: 5px;
     font-size: 1rem;
     border-color: var(--main-red);
     background-color: var(--main-red);
