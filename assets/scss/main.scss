@@ -4,6 +4,12 @@
 @import "utils/reset";
 @import "mixins/mixins";
 
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
 html,
 body {
   font-size: $mainFontSize;
@@ -52,16 +58,6 @@ html.theme-transition *:before,
 html.theme-transition *:after {
   transition: all 150ms !important;
   transition-delay: 0s !important;
-}
-
-::selection {
-  background: var(--color-cursor); /* Safari */
-}
-
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
 }
 
 h1,
@@ -148,117 +144,6 @@ section,
 img {
   display: block;
   max-width: 100%;
-}
-
-.tag {
-  display: inline-block;
-  text-transform: lowercase;
-  color: var(--color-pseudo-element);
-  font-size: 10px;
-  position: absolute;
-  font-weight: 400;
-  will-change: opacity;
-  backface-visibility: hidden;
-
-  @include xlg {
-    display: none;
-  }
-
-  &--top,
-  &--bottom,
-  &-body--top,
-  &-body--bottom,
-  &-text--top,
-  &-a--top,
-  &-a--bottom,
-  &-form--bottom,
-  &-form--top {
-    position: absolute;
-    left: 0;
-    font-style: italic;
-  }
-
-  &--top {
-    top: 0;
-    transform: translate(-15px, -45px);
-  }
-
-  &--bottom {
-    bottom: 0;
-    transform: translate(-15px, 45px);
-  }
-
-  &-a--top {
-    top: 0;
-    transform: translate(-15px, -30px);
-  }
-
-  &-a--bottom {
-    bottom: 0;
-    transform: translate(-15px, 30px);
-  }
-
-  &-body--top {
-    top: 0;
-    transform: translate(25px, 5px);
-  }
-
-  &-body--bottom {
-    bottom: 0;
-    transform: translate(25px, -5px);
-  }
-
-  &-text--top {
-    top: 0;
-    transform: translate(-15px, -10px);
-  }
-
-  &-text--bottom {
-    bottom: 0;
-    transform: translate(-15px, 10px);
-  }
-
-  &-form--top {
-    top: 0;
-    transform: translate(-15px, -15px);
-  }
-
-  &-form--bottom {
-    bottom: 0;
-    transform: translate(-15px, 25px);
-  }
-}
-
-.tag-nav {
-  display: inline-block;
-  text-transform: lowercase;
-  font-style: italic;
-  color: var(--color-pseudo-element);
-  font-size: 10px !important;
-  position: absolute;
-  font-weight: 400;
-  will-change: opacity;
-  backface-visibility: hidden;
-
-  @include xlg {
-    display: none;
-  }
-
-  &--top,
-  &--bottom {
-    position: absolute;
-    left: 0;
-  }
-
-  &--top {
-    top: 0;
-    transform: translate(-15px, -10px);
-  }
-
-  &--bottom {
-    bottom: 0;
-    transform: translate(-15px, 15px);
-  }
 }
 
 .mb2 {

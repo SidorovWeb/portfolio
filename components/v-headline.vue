@@ -62,28 +62,6 @@ export default {
 }
 
 .word {
-  will-change: transform;
-  backface-visibility: hidden;
-
-  background-clip: text;
-  color: transparent;
-  background-image: var(--gradient);
-  background-size: 300%;
-  transition: background-position 1s;
-  animation: bg-animation 15s infinite;
-}
-
-@keyframes bg-animation {
-  0% {
-    background-position: left;
-  }
-
-  50% {
-    background-position: right;
-  }
-
-  100% {
-    background-position: left;
-  }
+  color: var(--white);
 }
 </style>

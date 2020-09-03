@@ -198,7 +198,7 @@ select::-ms-expand {
 .v-transition-animate-post-leave-active,
 .v-transition-animate-post-move {
   transition-property: opacity transform;
-  transition-duration: 150ms;
+  transition-duration: 300ms;
   transition-timing-function: ease;
   z-index: 1;
 }

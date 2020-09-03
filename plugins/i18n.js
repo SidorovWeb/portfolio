@@ -21,7 +21,7 @@ export default ({ app }) => {
         h2About1: "Привет!",
         h2About2: "я Александр",
         aboutText:
-          "Занимаюсь версткой, и делаю это хорошо. Почему стоит обратиться ко мне? Я не пропадаю ни во время заказа, ни после. Всегда на связи. Вы всегда можете задать интересующий вопрос.Я не увеличиваю обговоренную заранее стоимость заказа, даже если он оказался сложнее, чем я сперва оценил (конечно, если не появляется новых требований). Всегда сдаю проекты вовремя (редко срок может быть превышен в связи с доработками). Пишите мне! Буду рад ответить на ваши вопросы.",
+          "Занимаюсь версткой, и делаю это хорошо. Почему стоит обратиться ко мне? Я не пропадаю ни во время заказа, ни после. Всегда на связи. Вы всегда можете задать интересующий вопрос.Я не увеличиваю обговоренную заранее стоимость заказа, даже если он оказался сложнее, чем я сперва оценил. Всегда сдаю проекты вовремя. Пишите мне! Буду рад ответить на ваши вопросы.",
         h2Portfolio1: "Мои",
         h2Portfolio2: "Работы",
         portfolioBtn: "Нажмите для перехода к работам",
@@ -66,7 +66,7 @@ export default ({ app }) => {
         h2About1: "Hi!",
         h2About2: "I'm Aleksandr",
         aboutText:
-          "I do the layout and I do it well. Why would you mess with me? I do not disappear either during the order or after. Always in touch. You can always ask a question of interest. I do not increase the pre-agreed cost of the order, even if it turned out to be more complicated than I originally thought (of course, if there are no new requirements). I always deliver projects on time (rarely, deadlines can be exceeded due to improvements). Write me! I will be glad to answer your questions.",
+          "I do the layout and I do it well. Why would you mess with me? I do not disappear either during the order or after. Always in touch. You can always ask a question of interest. I do not increase the pre-agreed cost of the order, even if it turned out to be more complicated than I originally thought. I always deliver projects on time. Write me! I will be glad to answer your questions.",
         h2Portfolio1: "My",
         h2Portfolio2: "works",
         portfolioBtn: "Click to go to work.",

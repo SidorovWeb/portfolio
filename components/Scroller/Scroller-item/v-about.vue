@@ -55,18 +55,6 @@ export default {
           { y: "0" },
           { y: ".5px", ease: "none", yoyo: true, repeat: -1 }
         )
-        .to(".svg-monitor", 2, {
-          fill: "#515152",
-          ease: "none",
-          yoyo: true,
-          repeat: -1
-        })
-        .to(".svg-monitor", 2, {
-          fill: "#ffffff",
-          ease: "none",
-          yoyo: true,
-          repeat: -1
-        });
     },
     animElems() {
       let tl = new TimelineMax({});

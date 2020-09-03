@@ -66,17 +66,17 @@
           <span>HTML to WordPress</span>
         </p>
       </div>
-      <SVGMCodeDevelopment class="skills__svg" />
+      <!-- <SVGMCodeDevelopment class="skills__svg" /> -->
     </div>
   </div>
 </template>
 
 <script>
-import SVGMCodeDevelopment from "@/static/img/svg/code-development.svg";
+// import SVGMCodeDevelopment from "@/static/img/svg/code-development.svg";
 
 export default {
   name: "v-skills",
-  components: { SVGMCodeDevelopment },
+  // components: { SVGMCodeDevelopment },
   mounted() {
     this.animElems();
   },
@@ -97,9 +97,9 @@ export default {
       let tl = new TimelineMax({});
       const title = document.querySelectorAll(".title-section .word");
       const skillsLine = document.querySelectorAll(".skills__tag");
-      const svg = document.querySelector(".skills__svg");
+      // const svg = document.querySelector(".skills__svg");
 
-      TweenMax.set([skillsLine, svg], {
+      TweenMax.set(skillsLine, {
         autoAlpha: 0,
         scale: 0.95,
         yPercent: 2
@@ -122,24 +122,31 @@ export default {
         },
         0.15,
         1
-      ).to(
-        svg,
-        0.8,
-        {
-          autoAlpha: 0.1,
-          yPercent: 0,
-          scale: 1
-        },
-        1.5
       );
+      // .to(
+      //   svg,
+      //   0.8,
+      //   {
+      //     autoAlpha: 0.1,
+      //     yPercent: 0,
+      //     scale: 1
+      //   },
+      //   1.5
+      // ).to(
+      //   svg,
+      //   0.01,
+      //   {
+      //     x: 0.000001,
+      //   }
+      // );
     },
     leave() {
       let tl = new TimelineMax();
       const title = document.querySelectorAll(".title-section .word");
       const skillsLine = document.querySelectorAll(".skills__tag");
-      const svg = document.querySelector(".skills__svg");
+      // const svg = document.querySelector(".skills__svg");
 
-      tl.to([title, skillsLine, svg], 0.5, {
+      tl.to([title, skillsLine], 0.5, {
         autoAlpha: 0
       });
     }
@@ -235,7 +242,6 @@ export default {
   &__svg {
     position: absolute;
     top: 0;
-    z-index: 1;
     width: 500px;
     height: 500px;
     opacity: 0.1;

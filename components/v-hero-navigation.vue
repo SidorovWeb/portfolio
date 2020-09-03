@@ -90,7 +90,6 @@ export default {
             autoAlpha: 1,
             xPercent: 0,
             stagger: 0.2,
-            ease: Expo.inOut
           },
           "first-=1"
         )
@@ -137,10 +136,6 @@ export default {
     justify-content: flex-end;
     overflow: hidden;
     cursor: pointer;
-    transition: opacity 0.3s ease;
-    &:hover {
-      opacity: 0.8;
-    }
   }
 
   &__item-text {

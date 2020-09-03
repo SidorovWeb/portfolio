@@ -48,19 +48,15 @@ export default {
       const tl = new TimelineMax({ onComplete: self.screenFirst });
       tl.staggerFromTo(
         ".mask-text .letter",
-        0.8,
+        1,
         {
-          scaleW: 0.1,
-          webKitFilter: "blur(5px)",
-          filter: "blur(5px)",
+          scaleW: 0,
           x: 50
         },
         {
           delay: 0.4,
           scaleW: 0.1,
           autoAlpha: 1,
-          webKitFilter: "blur(0px)",
-          filter: "blur(0px)",
           x: 0,
           ease: Power1.easeOut
         },
@@ -108,7 +104,6 @@ export default {
   &__title {
     font-size: 1.5rem;
     color: var(--white);
-    will-change: transform;
     backface-visibility: hidden;
   }
 }
@@ -123,7 +118,6 @@ export default {
   }
   & .letter {
     will-change: transform;
-    -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     visibility: hidden;
   }

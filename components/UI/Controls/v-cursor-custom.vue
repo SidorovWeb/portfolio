@@ -65,12 +65,9 @@ export default {
       document.addEventListener("mouseover", e => {
         const target = e.target;
         if (target && target.classList.contains("v-cursor-btn")) {
-          cursor.classList.remove("cursor-trans");
           cursor.classList.add("cursor-hover");
-
           return;
         }
-        cursor.classList.add("cursor-trans");
         cursor.classList.remove("cursor-hover");
       });
     }
@@ -90,18 +87,15 @@ export default {
   opacity: 0.5;
   z-index: 9999;
   mix-blend-mode: difference;
+  transition: transform 0.3s ease-in-out;
 
   @include xlg {
     display: none;
   }
 }
-.cursor-trans {
-  transition: transform 0.3s ease;
-}
 
 .cursor-hover {
   transform: scale(1.5);
-  transition: transform 0.4s ease;
 }
 
 body:not(.admin-page) {

@@ -157,7 +157,7 @@ export default {
       opacity: 1;
     }
     &-leave-active {
-      transition: transform 0.6s ease, opacity 0.6s, height 0.6s 0.2s;
+      transition: transform 0.3s ease, opacity 0.3s, 0.2s;
     }
     &-leave-to {
       transform: translateY(3rem);

@@ -66,32 +66,34 @@ export default {
 
       TweenMax.set(elems, {
         autoAlpha: 0,
-        yPercent: 2,
-        scale: 0.95
+        y: 30,
+        x: 10,
+        scale: 0.9,
       });
 
-      tl.staggerTo(
+      tl.to(
         elems,
-        1,
+        1.5,
         {
-          yPercent: 0,
+          y: 0,
+          x: 0,
           autoAlpha: 1,
-          scale: 1
-        },
-        0.3
+          scale: 1,
+          delay: 1.5,
+        }
       );
     },
 
     setDataattrForElems() {
       const array = [
-        "-0.4",
+        "-0.3",
         "0.1",
         "-0.1",
         "0.2",
         "0.1",
         "0.2",
-        "0.1",
-        "-0.4",
+        "0.05",
+        "-0.3",
         "-0.1",
         "0.1"
       ];
@@ -117,7 +119,6 @@ export default {
   width: 100%;
   height: 100vh;
   z-index: -1;
-  filter: blur(5px);
 
   pointer-events: none;
 
@@ -131,7 +132,7 @@ export default {
     width: 100vw;
     height: 100vh;
     background: var(--bg-color-rgba);
-    z-index: 2;
+    z-index: 3;
   }
 
   &__element {
@@ -142,12 +143,12 @@ export default {
       top: 8% !important;
       left: 2% !important;
       width: 36vw;
-      z-index: 1;
+      z-index: 2;
     }
     &--1 {
-      top: 30% !important;
-      left: 48% !important;
-      width: 20vw;
+      top: 36% !important;
+      left: 45% !important;
+      width: 12vw;
     }
     &--2 {
       top: 70% !important;
@@ -156,41 +157,41 @@ export default {
       z-index: 1;
     }
     &--3 {
-      top: 80% !important;
-      left: 35% !important;
+      top: 41% !important;
+      left: 71% !important;
       width: 20vw;
     }
     &--4 {
-      top: 60% !important;
-      left: 55% !important;
-      width: 20vw;
+      top: 66% !important;
+      left: 39% !important;
+      width: 17vw;
     }
     &--5 {
       top: 10% !important;
-      left: 40% !important;
+      left: 44% !important;
       width: 20vw;
       z-index: 1;
     }
     &--6 {
-      top: 44% !important;
-      left: 25% !important;
-      width: 20vw;
+      top: 51% !important;
+      left: 37% !important;
+      width: 10vw;
     }
     &--7 {
       top: 70% !important;
       left: 60% !important;
       width: 32vw;
-      z-index: 1;
+      z-index: 2;
     }
     &--8 {
-      top: 35% !important;
-      left: 58% !important;
-      width: 28vw;
+      top: 36% !important;
+      left: 22% !important;
+      width: 20vw;
       z-index: 1;
     }
     &--9 {
       top: 10% !important;
-      left: 85% !important;
+      left: 74% !important;
       width: 25vw;
     }
   }

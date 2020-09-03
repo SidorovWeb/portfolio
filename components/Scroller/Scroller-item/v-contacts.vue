@@ -23,7 +23,7 @@
         <!-- social -->
         <v-social-button class="contacts__social" />
         <!-- svg -->
-        <SVGchat class="contacts__chat" />
+        <!-- <SVGchat class="contacts__chat" /> -->
       </div>
     </div>
     <!-- v-notification -->
@@ -33,12 +33,12 @@
 
 <script>
 import { mapGetters } from "vuex";
-import SVGchat from "@/static/img/svg/chat.svg";
+// import SVGchat from "@/static/img/svg/chat.svg";
 import { TweenMax } from "gsap";
 
 export default {
   name: "v-contacts",
-  components: { SVGchat },
+  // components: { SVGchat },
   mounted() {
     this.animElems();
   },
@@ -63,9 +63,9 @@ export default {
       const text = document.querySelectorAll(".contacts__text");
       const form = document.querySelectorAll(".contacts__form");
       const social = document.querySelectorAll(".contacts__social");
-      const svg = document.querySelectorAll(".contacts__chat");
+      // const svg = document.querySelectorAll(".contacts__chat");
 
-      TweenMax.set([text, form, social, svg], {
+      TweenMax.set([text, form, social], {
         autoAlpha: 0,
         scale: 0.95,
         yPercent: 2
@@ -89,16 +89,16 @@ export default {
         0.3,
         1
       );
-      tl.to(
-        svg,
-        0.8,
-        {
-          autoAlpha: 0.1,
-          yPercent: 0,
-          scale: 1
-        },
-        1.5
-      );
+      // tl.to(
+      //   svg,
+      //   0.8,
+      //   {
+      //     autoAlpha: 0.1,
+      //     yPercent: 0,
+      //     scale: 1
+      //   },
+      //   1.5
+      // );
     },
     leave() {
       let tl = new TimelineMax();
@@ -106,9 +106,9 @@ export default {
       const text = document.querySelectorAll(".contacts__text");
       const form = document.querySelectorAll(".contacts__form");
       const social = document.querySelectorAll(".contacts__social");
-      const svg = document.querySelectorAll(".contacts__chat");
+      // const svg = document.querySelectorAll(".contacts__chat");
 
-      tl.to([title, text, form, social, svg], 0.5, {
+      tl.to([title, text, form, social], 0.5, {
         autoAlpha: 0
       });
     }
@@ -132,7 +132,6 @@ export default {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    z-index: 1;
     @include xlg {
       width: calc(50% - 15px);
     }
@@ -180,6 +179,7 @@ export default {
     text-transform: uppercase;
     font-weight: bold;
     font-family: "PlayfairDisplayBold";
+    font-size: 18px;
   }
 }
 </style>

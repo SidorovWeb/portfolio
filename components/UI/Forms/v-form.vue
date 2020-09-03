@@ -306,15 +306,14 @@ export default {
   }
   &__input,
   &__textarea {
-    border-radius: 0;
     border: 0;
-    border-bottom: 1px solid var(--home-color-text);
+    border-radius: 5px;
     color: var(--white);
-    background-color: transparent;
+    background-color: var(--color-pseudo-element);
     padding: 0.7rem;
     font-size: 1rem;
     &::placeholder {
-      color: var(--white);
+      color: #e9e9e9;
       opacity: 1;
       letter-spacing: $mainLetterSpacing;
       font-size: 0.9rem;
@@ -328,6 +327,7 @@ export default {
     border-color: var(--main-red);
     background-color: var(--main-red);
     font-weight: 700;
+    color: #e9e9e9 !important;
   }
 }
 
