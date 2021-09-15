@@ -1,6 +1,5 @@
 import axios from "axios";
 import Cookie from "js-cookie";
-import { TweenMax } from "gsap";
 
 export const state = () => ({
   token: null,

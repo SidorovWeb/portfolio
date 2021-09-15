@@ -17,6 +17,7 @@
 import { mapState } from "vuex";
 import SVGhome from "@/static/img/svg/home.svg";
 export default {
+  name: "Auth",
   components: { SVGhome },
   computed: {
     ...mapState(["message"])

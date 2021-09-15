@@ -4,7 +4,6 @@
     <div class="to-home header__to-home">
       <nuxt-link class="v-cursor-btn header__link" to="/">
         <SVGhome class="svg-home" />
-        <!-- <span>На главную</span> -->
       </nuxt-link>
     </div>
     <!-- v-hamburger -->
@@ -14,39 +13,33 @@
         href="https://vk.com/sidorovalexandern"
         target="_blank"
         class="v-cursor-btn header__link animColor"
-      >{{ this.$t("dev") }}</a>
+        >{{ this.$t("dev") }}</a
+      >
     </div>
-    <!-- SVGadmin -->
-    <!-- <div class="header__admin">
-      <nuxt-link to="/auth">
-        <SVGadmin />
-      </nuxt-link>
-    </div>-->
-      <div class="flags header__flags">
-        <!-- SVGflagUS -->
-        <div v-if="lang" class="v-cursor-btn flag" @click="changeLanguage('us')">
-          <SVGflagUS />
-        </div>
-        <!-- SVGflagRU -->
-        <div v-if="!lang" class="v-cursor-btn flag" @click="changeLanguage('ru')">
-          <SVGflagRU />
-        </div>
+    <div class="flags header__flags">
+      <!-- SVGflagUS -->
+      <div v-if="lang" class="v-cursor-btn flag" @click="changeLanguage('us')">
+        <SVGflagUS />
       </div>
+      <!-- SVGflagRU -->
+      <div v-if="!lang" class="v-cursor-btn flag" @click="changeLanguage('ru')">
+        <SVGflagRU />
+      </div>
+    </div>
     <!-- v-toggle-switch-mode -->
     <v-toggle-switch-mode />
   </div>
 </template>
 
 <script>
-import { TweenMax } from "gsap";
+import { TimelineMax, TweenMax } from "gsap";
 import vToggleSwitchMode from "@/components/UI/Controls/v-toggle-switch-mode.vue";
 import SVGhome from "@/static/img/svg/home.svg";
 import SVGflagRU from "@/static/img/svg/russia.svg";
 import SVGflagUS from "@/static/img/svg/united-states.svg";
-import SVGadmin from "@/static/img/svg/admin.svg";
 export default {
   name: "v-header",
-  components: { vToggleSwitchMode, SVGflagRU, SVGflagUS, SVGadmin, SVGhome },
+  components: { vToggleSwitchMode, SVGflagRU, SVGflagUS, SVGhome },
   data() {
     return {
       lang: true,
@@ -82,7 +75,6 @@ export default {
         .matches
         ? 1
         : 0;
-      let durPointer = duration == 1 ? 1 : 0;
 
       TweenMax.set(header, { autoAlpha: 0, visibility: "hidden" });
 
@@ -98,6 +90,7 @@ export default {
 </script>
 
 <style lang="scss">
+@import "@/assets/scss/utils/vars";
 @import "@/assets/scss/mixins/mixins";
 .works-page .hamburger {
   display: none;
@@ -124,6 +117,8 @@ export default {
   width: 100%;
   padding: 1.25rem 2rem;
   z-index: 10;
+  font-weight: 700;
+  font-family: $mainFontBold;
   @include xlg {
     background-color: var(--bg-color-rgba);
     box-shadow: 0px 1px 4px 0px var(--bg-color);

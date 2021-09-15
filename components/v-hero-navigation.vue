@@ -2,8 +2,16 @@
   <nav class="nav v-hero-navigation">
     <!-- nav__list -->
     <ul class="nav__list">
-      <li v-for="(item, name, index) in this.$t('nav')" :key="item.key" class="nav__item">
-        <span class="nav__item-text v-cursor-btn" @click="clickToElement(index, name)">{{ item }}</span>
+      <li
+        v-for="(item, name, index) in this.$t('nav')"
+        :key="item.key"
+        class="nav__item"
+      >
+        <span
+          class="nav__item-text v-cursor-btn"
+          @click="clickToElement(index, name)"
+          >{{ item }}</span
+        >
       </li>
     </ul>
     <!-- v-pointer -->
@@ -24,11 +32,11 @@ export default {
   },
   data() {
     return {
-      once: true
+      once: true,
     };
   },
   computed: {
-    ...mapGetters(["getNameNavLink", "getMobile", "getDesktop"])
+    ...mapGetters(["getNameNavLink", "getMobile", "getDesktop"]),
   },
   methods: {
     ...mapActions(["setNameNavLink", "setClickNavMenu"]),
@@ -54,7 +62,7 @@ export default {
             onComplete: () => {
               this.setClickNavMenu(false);
               this.once = true;
-            }
+            },
           });
         }, 500);
       }
@@ -95,11 +103,11 @@ export default {
         )
         .to(pointer, durPointer, {
           top: 8.5,
-          height: 26
+          height: 26,
         })
         .set(pointer, { bottom: "initial" });
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -110,12 +118,13 @@ export default {
   position: fixed;
   visibility: hidden;
   display: block;
-  width: 120px;
+  width: 140px;
   bottom: 40px;
   right: 40px;
   text-transform: uppercase;
   transform-origin: left;
   z-index: 100;
+  font-family: $mainFontBold;
   @include xlg {
     display: none;
   }
@@ -123,7 +132,7 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 120px;
+    width: 140px;
     white-space: nowrap;
     overflow: hidden;
   }

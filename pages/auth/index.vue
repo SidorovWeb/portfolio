@@ -4,8 +4,12 @@
       <form class="auth__form" @submit.prevent="onSubmit">
         <!-- form.name -->
         <div class="form__item" :class="{ errorInput: $v.user.email.$error }">
-          <p v-if="!$v.user.email.required" class="errorText">{{ this.$t("required") }}</p>
-          <p v-if="!$v.user.email.email" class="errorText">{{ this.$t("errorTextEmail") }}</p>
+          <p v-if="!$v.user.email.required" class="errorText">
+            {{ this.$t("required") }}
+          </p>
+          <p v-if="!$v.user.email.email" class="errorText">
+            {{ this.$t("errorTextEmail") }}
+          </p>
           <v-input
             v-model="user.email"
             new-class="form__input"
@@ -16,8 +20,13 @@
           />
         </div>
         <!-- form.password -->
-        <div class="form__item" :class="{ errorInput: $v.user.password.$error }">
-          <p v-if="!$v.user.password.required" class="errorText">{{ this.$t("required") }}</p>
+        <div
+          class="form__item"
+          :class="{ errorInput: $v.user.password.$error }"
+        >
+          <p v-if="!$v.user.password.required" class="errorText">
+            {{ this.$t("required") }}
+          </p>
           <p v-if="!$v.user.password.minLength" class="errorText">
             {{ this.$t("errorTextName") }}
             {{ $v.user.password.$params.minLength.min }} !
@@ -41,7 +50,6 @@
 </template>
 
 <script>
-import { TweenMax, Power2 } from "gsap";
 import { mapState } from "vuex";
 import { required, minLength, email } from "vuelidate/lib/validators";
 export default {

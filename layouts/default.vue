@@ -17,7 +17,7 @@ import vMobileMenu from "@/components/v-mobile-menu.vue";
 import vCursorCustom from "@/components/UI/Controls/v-cursor-custom.vue";
 
 export default {
-  name: "default",
+  name: "Default",
   components: { vHeader, vMobileMenu, vCursorCustom },
   computed: {
     ...mapState(["screen"]),

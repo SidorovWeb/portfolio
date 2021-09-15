@@ -30,14 +30,14 @@ export default {
   computed: {
     clickNav() {
       return this.$store.getters.getClickNavMenu;
-    }
+    },
   },
   watch: {
-    clickNav: function(clickMenuNav) {
+    clickNav: function (clickMenuNav) {
       if (clickMenuNav) {
         this.leave();
       }
-    }
+    },
   },
   methods: {
     animeAboutePhoto() {
@@ -48,13 +48,12 @@ export default {
         { y: "0" },
         { y: ".5px", ease: "none", yoyo: true, repeat: -1 },
         "step1"
-      )
-        .fromTo(
-          ".svg-left-hand",
-          0.15,
-          { y: "0" },
-          { y: ".5px", ease: "none", yoyo: true, repeat: -1 }
-        )
+      ).fromTo(
+        ".svg-left-hand",
+        0.15,
+        { y: "0" },
+        { y: ".5px", ease: "none", yoyo: true, repeat: -1 }
+      );
     },
     animElems() {
       let tl = new TimelineMax({});
@@ -65,7 +64,7 @@ export default {
       TweenMax.set([aboutImg, text], {
         autoAlpha: 0,
         yPercent: 2,
-        scale: 0.95
+        scale: 0.95,
       });
 
       tl.staggerFromTo(
@@ -80,7 +79,7 @@ export default {
         {
           autoAlpha: 1,
           yPercent: 0,
-          scale: 1
+          scale: 1,
         },
         1
       );
@@ -92,14 +91,15 @@ export default {
       const title = document.querySelectorAll(".title-section .word");
 
       tl.to([title, aboutText, aboutImg], 0.5, {
-        autoAlpha: 0
+        autoAlpha: 0,
       });
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style lang="scss">
+@import "@/assets/scss/utils/vars";
 @import "@/assets/scss/mixins/mixins.scss";
 #rain-container {
   position: absolute;
@@ -134,6 +134,7 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  font-family: $mainFontBold;
   @include xlg {
     justify-content: space-between;
   }

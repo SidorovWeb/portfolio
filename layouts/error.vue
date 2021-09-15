@@ -1,8 +1,13 @@
 <template>
   <div class="error-404">
     <h1>Что-то пошло не так....</h1>
-    <p>Ссылка, по которой вы нажали, может быть повреждена или больше не существует.</p>
-    <nuxt-link to="/" class="btn btnAccent error-404__btn">Вернуться на главную страницу</nuxt-link>
+    <p>
+      Ссылка, по которой вы нажали, может быть повреждена или больше не
+      существует.
+    </p>
+    <nuxt-link to="/" class="btn btnAccent error-404__btn"
+      >Вернуться на главную страницу</nuxt-link
+    >
     <SVGerror />
   </div>
 </template>

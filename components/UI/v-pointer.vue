@@ -4,13 +4,13 @@
 
 <script>
 export default {
-  name: "v-pointer"
+  name: "v-pointer",
 };
 </script>
 
 <style lang="scss">
 .pointer {
-  width: 2px;
+  width: 4px;
   background-color: var(--main-red);
   position: absolute;
   right: -10px;

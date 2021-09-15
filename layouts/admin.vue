@@ -22,15 +22,16 @@
 
 <script>
 export default {
+  name: "Admin",
   middleware: ["auth-check", "auth"],
   methods: {
     logoutUser() {
       this.$store.dispatch("logoutUser").then(() => {
-        this.$router.push("/auth")
-      })
+        this.$router.push("/auth");
+      });
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>

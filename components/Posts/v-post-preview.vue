@@ -4,7 +4,12 @@
       <a :href="post.web" class="post-preview__img-container" target="_blank">
         <picture>
           <source :srcset="post.webp" type="image/webp" />
-          <img class="post-preview__img v-cursor-btn" :src="post.img" :alt="post.title" />
+          <img
+            class="post-preview__img v-cursor-btn"
+            :src="post.img"
+            :alt="post.title"
+            decoding="async"
+          />
         </picture>
       </a>
       <div class="post-preview__wrapper">
@@ -13,11 +18,18 @@
             :href="post.web"
             class="post-preview__title v-cursor-btn"
             target="_blank"
-          >{{ post.title }}</a>
+            >{{ post.title }}</a
+          >
         </div>
         <div class="post-preview__body">
           <div class="post-preview__tags">
-            <div v-for="(tag, i) in post.tags" :key="i" class="post-preview__tag">{{ tag }}</div>
+            <div
+              v-for="(tag, i) in post.tags"
+              :key="i"
+              class="post-preview__tag"
+            >
+              {{ tag }}
+            </div>
           </div>
         </div>
         <div class="post-preview__footer">
@@ -52,7 +64,10 @@
               <span>{{ this.$t("certificate") }}</span>
             </a>
             <!-- post.edit -->
-            <nuxt-link class="post-preview__link post-preview--id" :to="getLink">
+            <nuxt-link
+              class="post-preview__link post-preview--id"
+              :to="getLink"
+            >
               <SVGweb class="post-preview__svg" />
               <span>Редактировать</span>
             </nuxt-link>
@@ -72,36 +87,37 @@ export default {
   props: {
     post: {
       type: Object,
-      required: true
+      required: true,
     },
     admin: {
       type: Boolean,
-      default: false
+      default: false,
     },
     grid: {
       type: Boolean,
-      default: true
-    }
+      default: true,
+    },
   },
   computed: {
     getLink() {
       return this.admin ? `/admin/${this.post.id}` : `/works/${this.post.id}`;
-    }
+    },
   },
   methods: {
     handleResize() {
       const pst = document.querySelectorAll(".post-col");
       if (window.innerWidth <= 768) {
-        pst.forEach(p => {
+        pst.forEach((p) => {
           p.classList.remove("list");
         });
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style lang="scss">
+@import "@/assets/scss/utils/vars";
 @import "@/assets/scss/mixins/mixins";
 .post-col {
   max-width: calc(100% / 3);
@@ -219,6 +235,7 @@ export default {
     margin-bottom: 2rem;
     text-align: left;
     display: inline-block;
+    font-family: $mainFontBold;
 
     @include md {
       margin-bottom: 1rem;
@@ -249,6 +266,7 @@ export default {
     align-items: center;
     margin-bottom: 1rem;
     z-index: 1;
+    font-family: $mainFontBold;
     & > * {
       margin-right: 2rem;
       &:last-child {

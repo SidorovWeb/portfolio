@@ -32,8 +32,8 @@ export default {
    ** Plugins to load before mounting the App
    */
   plugins: [
-    {src: "~/plugins/app-components.js"},
-    {src: "~/plugins/i18n.js"}
+    { src: "~/plugins/app-components.js" },
+    { src: "~/plugins/i18n.js" }
   ],
   /*
    ** Nuxt.js modules
@@ -44,7 +44,7 @@ export default {
    ** Build configuration
    */
   router: {
-    scrollBehavior: function(to, from, savedPosition) {
+    scrollBehavior: function() {
       return { x: 0, y: 0 };
     }
   },

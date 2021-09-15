@@ -13,7 +13,8 @@
           value="email"
           checked
           @click="onChange($event.target.value)"
-        >Email</v-radio>
+          >Email</v-radio
+        >
         <v-radio
           id="form__check--telegram"
           type="radio"
@@ -22,11 +23,14 @@
           new-class="radio-line__input"
           value="telegram"
           @click="onChange($event.target.value)"
-        >Telegram</v-radio>
+          >Telegram</v-radio
+        >
       </div>
       <!-- form.name -->
       <div class="form__item" :class="{ errorInput: $v.form.name.$error }">
-        <p v-if="!$v.form.name.required" class="errorText">{{ this.$t("required") }}</p>
+        <p v-if="!$v.form.name.required" class="errorText">
+          {{ this.$t("required") }}
+        </p>
         <p v-if="!$v.form.name.minLength" class="errorText">
           {{ this.$t("errorTextName") }}
           {{ $v.form.name.$params.minLength.min }} !
@@ -41,8 +45,14 @@
         />
       </div>
       <!-- form.userName -->
-      <div v-if="!form.check" class="form__item" :class="{ errorInput: $v.form.userName.$error }">
-        <p v-if="!$v.form.userName.required" class="errorText">{{ this.$t("required") }}</p>
+      <div
+        v-if="!form.check"
+        class="form__item"
+        :class="{ errorInput: $v.form.userName.$error }"
+      >
+        <p v-if="!$v.form.userName.required" class="errorText">
+          {{ this.$t("required") }}
+        </p>
         <p v-if="!$v.form.userName.minLength" class="errorText">
           {{ this.$t("errorTextName") }}
           {{ $v.form.userName.$params.minLength.min }} !
@@ -57,9 +67,17 @@
         />
       </div>
       <!-- form.email -->
-      <div v-if="form.check" class="form__item" :class="{ errorInput: $v.form.email.$error }">
-        <p v-if="!$v.form.email.required" class="errorText">{{ this.$t("required") }}</p>
-        <p v-if="!$v.form.email.email" class="errorText">{{ this.$t("errorTextEmail") }}</p>
+      <div
+        v-if="form.check"
+        class="form__item"
+        :class="{ errorInput: $v.form.email.$error }"
+      >
+        <p v-if="!$v.form.email.required" class="errorText">
+          {{ this.$t("required") }}
+        </p>
+        <p v-if="!$v.form.email.email" class="errorText">
+          {{ this.$t("errorTextEmail") }}
+        </p>
         <v-input
           v-model="form.email"
           new-class="form__input"
@@ -71,7 +89,9 @@
       </div>
       <!-- form.textarea -->
       <div class="form__item" :class="{ errorInput: $v.form.text.$error }">
-        <p v-if="!$v.form.text.required" class="errorText">{{ this.$t("required") }}</p>
+        <p v-if="!$v.form.text.required" class="errorText">
+          {{ this.$t("required") }}
+        </p>
         <p v-if="!$v.form.text.minLength" class="errorText">
           {{ this.$t("errorTextText") }}
           {{ $v.form.text.$params.minLength.min }} !
@@ -86,7 +106,9 @@
         />
       </div>
       <!-- v-button -->
-      <v-button class="form__btn" btnClass="btnAccent">{{ this.$t("send") }}</v-button>
+      <v-button class="form__btn" btnClass="btnAccent">{{
+        this.$t("send")
+      }}</v-button>
     </form>
   </div>
 </template>
@@ -104,9 +126,9 @@ export default {
         userName: "",
         email: "",
         text: "",
-        check: true
+        check: true,
       },
-      message: null
+      message: null,
     };
   },
   validations() {
@@ -115,34 +137,34 @@ export default {
         form: {
           name: {
             required,
-            minLength: minLength(4)
+            minLength: minLength(4),
           },
           email: {
             required,
-            email
+            email,
           },
           text: {
             required,
-            minLength: minLength(4)
-          }
-        }
+            minLength: minLength(4),
+          },
+        },
       };
     } else {
       return {
         form: {
           name: {
             required,
-            minLength: minLength(4)
+            minLength: minLength(4),
           },
           userName: {
             required,
-            minLength: minLength(4)
+            minLength: minLength(4),
           },
           text: {
             required,
-            minLength: minLength(4)
-          }
-        }
+            minLength: minLength(4),
+          },
+        },
       };
     }
   },
@@ -163,38 +185,38 @@ export default {
           ? {
               name: this.form.name,
               email: this.form.email,
-              text: this.form.text
+              text: this.form.text,
             }
           : {
               name: this.form.name,
               userName: this.form.userName,
-              text: this.form.text
+              text: this.form.text,
             };
         if (this.form.check) {
           // mail
           axios
             .post("https://sidorovweb.ru/mail.php", user)
-            .then(res => {
+            .then((res) => {
               console.log(res);
             })
-            .catch(e => {
+            .catch((e) => {
               console.log(e);
             });
         } else {
           // telegram
           axios
             .post("https://sidorovweb.ru/telegram.php", user)
-            .then(res => {
+            .then((res) => {
               console.log(res);
             })
-            .catch(e => {
+            .catch((e) => {
               console.log(e);
             });
         }
 
         this.setMessage({
           name: this.$t("message"),
-          icon: "check_circle"
+          icon: "check_circle",
         });
         // DONE
         this.form.check = null;
@@ -203,7 +225,7 @@ export default {
       }
       this.setMessage({
         name: this.$t("messageError"),
-        icon: "error"
+        icon: "error",
       });
     },
     reset() {
@@ -212,8 +234,8 @@ export default {
       this.form.email = "";
       this.form.text = "";
       this.$v.$reset();
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -236,6 +258,8 @@ export default {
   }
   &__text {
     color: var(--white);
+    font-weight: 700;
+
     @include sm {
       display: block;
       width: 100%;
@@ -299,30 +323,31 @@ export default {
     align-items: flex-start;
   }
   &__input {
-    margin-bottom: 1rem;
+    margin-bottom: 1.4rem;
   }
   &__textarea {
     margin-bottom: 2rem;
+    min-height: 150px;
   }
   &__input,
   &__textarea {
     border: 0;
     border-radius: 5px;
-    color: var(--white);
+    color: #fff;
     background-color: var(--color-pseudo-element);
-    padding: 0.7rem;
+    padding: 1.2rem;
     font-size: 1rem;
     &::placeholder {
       color: #e9e9e9;
       opacity: 1;
       letter-spacing: $mainLetterSpacing;
       font-size: 0.9rem;
-      font-family: $mainFont;
-      font-weight: $mainFontWeight;
+      font-family: $mainFontBold;
     }
   }
   &__btn {
     border-radius: 5px;
+    padding: 1em 2em;
     font-size: 1rem;
     border-color: var(--main-red);
     background-color: var(--main-red);
@@ -341,7 +366,7 @@ export default {
   position: absolute;
   margin-left: 0.7rem;
   display: block;
-  transform: translateY(-9px);
+  transform: translateY(-19px);
   font-size: 0.8rem;
   text-align: left;
 }

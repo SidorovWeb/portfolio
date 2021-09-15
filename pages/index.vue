@@ -19,14 +19,13 @@
 
 <script>
 import { mapState, mapActions, mapGetters } from "vuex";
-import { TimelineMax, TweenMax, Power2, Circ, Power0 } from "gsap";
 import vScroller from "@/components/Scroller/v-scroller.vue";
 import vHeroNavigation from "@/components/v-hero-navigation.vue";
 import vLoadingScreen from "@/components/v-loading-screen.vue";
 import "vue-resize/dist/vue-resize.css";
 
 export default {
-  name: "index",
+  name: "Index",
   layout: "default",
   components: { vScroller, vHeroNavigation, vLoadingScreen },
   head() {
@@ -54,16 +53,14 @@ export default {
       ]
     };
   },
+  mounted() {
+    this.setScreen(true);
+  },
   beforeRouteEnter(to, from, next) {
     next(() => {
       const body = document.querySelector("body");
       body.classList.add("main-page");
     });
-  },
-  mounted() {
-    this.setScreen(true);
-
-    // this.setScreen(false); // Выключить первый экран
   },
   computed: {
     ...mapState(["screen"]),

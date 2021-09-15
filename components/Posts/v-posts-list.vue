@@ -1,7 +1,11 @@
 <template>
   <div class="post-list v-posts-list">
     <div class="sorting-line">
-      <v-select :selected="selected" :options="options" @select="sortByCategories" />
+      <v-select
+        :selected="selected"
+        :options="options"
+        @select="sortByCategories"
+      />
       <div class="grid">
         <div
           class="grid__svg grid__svg--grid grid__item grid__item--grid v-cursor-btn"
@@ -57,8 +61,7 @@ export default {
       options: [
         { name: "Все", value: "all" },
         { name: "Верстка", value: "html" },
-        { name: "Vue js", value: "vue js" },
-        { name: "HTML to WP", value: "html to wp" }
+        { name: "Vue js", value: "vue js" }
       ],
       selected: "Все",
       sortedProducts: []
@@ -129,9 +132,11 @@ select::-ms-expand {
   }
 
   &__item {
-    width: 22px;
-    height: 22px;
+    width: 30px;
+    height: 30px;
     cursor: pointer;
+    opacity: 1;
+    transition: all 0.3s ease;
 
     &.active {
       opacity: 1;
@@ -151,10 +156,10 @@ select::-ms-expand {
     opacity: 0.5;
   }
   &__svg--grid {
-    width: 20px;
+    width: 22px;
   }
   &__list {
-    width: 24px;
+    width: 28px;
   }
 }
 
@@ -192,33 +197,5 @@ select::-ms-expand {
 }
 .simplebar-content-wrapper {
   border-radius: 5px;
-}
-
-.v-transition-animate-post-enter-active,
-.v-transition-animate-post-leave-active,
-.v-transition-animate-post-move {
-  transition-property: opacity transform;
-  transition-duration: 300ms;
-  transition-timing-function: ease;
-  z-index: 1;
-}
-
-.v-transition-animate-post-enter {
-  opacity: 0;
-}
-
-.v-transition-animate-post-enter-to {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.v-transition-animate-post-leave-active {
-  position: absolute;
-  z-index: -1;
-}
-
-.v-transition-animate-post-leave-to {
-  opacity: 0;
-  transform-origin: center top;
 }
 </style>

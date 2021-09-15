@@ -83,14 +83,14 @@ export default {
   computed: {
     clickNav() {
       return this.$store.getters.getClickNavMenu;
-    }
+    },
   },
   watch: {
-    clickNav: function(clickMenuNav) {
+    clickNav: function (clickMenuNav) {
       if (clickMenuNav) {
         this.leave();
       }
-    }
+    },
   },
   methods: {
     animElems() {
@@ -102,7 +102,7 @@ export default {
       TweenMax.set(skillsLine, {
         autoAlpha: 0,
         scale: 0.95,
-        yPercent: 2
+        yPercent: 2,
       });
 
       tl.staggerFromTo(
@@ -118,7 +118,7 @@ export default {
         {
           autoAlpha: 1,
           yPercent: 0,
-          scale: 1
+          scale: 1,
         },
         0.15,
         1
@@ -147,10 +147,10 @@ export default {
       // const svg = document.querySelector(".skills__svg");
 
       tl.to([title, skillsLine], 0.5, {
-        autoAlpha: 0
+        autoAlpha: 0,
       });
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -181,6 +181,8 @@ export default {
     position: relative;
     padding-top: 1rem;
     z-index: 2;
+    font-weight: 700;
+    font-family: $mainFontBold;
     @include xlg {
       display: flex;
       width: calc(50% - 15px);
@@ -208,7 +210,6 @@ export default {
       margin-bottom: 1rem;
       font-size: 1.2rem;
       overflow: hidden;
-      font-weight: 700;
 
       @include md {
         font-size: 1rem;

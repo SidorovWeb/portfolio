@@ -2,17 +2,24 @@
   <div class="contacts v-contacts">
     <div class="text-zone contacts__text-zone">
       <!-- v-headline -->
-      <v-headline title="contacts__title" word1="h2Contacts1" word2="h2Contacts2" />
+      <v-headline
+        title="contacts__title"
+        word1="h2Contacts1"
+        word2="h2Contacts2"
+      />
       <div class="text-zone__text-container">
         <!-- text -->
-        <p class="contacts__text text-zone__text">{{ this.$t("contactsText") }}</p>
         <p class="contacts__text text-zone__text">
-          {{this.$t("contactsFB")}}
+          {{ this.$t("contactsText") }}
+        </p>
+        <p class="contacts__text text-zone__text">
+          {{ this.$t("contactsFB") }}
           <a
             href="https://kwork.ru/user/sidorovalexander"
             target="_blink"
             class="contacts__fb v-cursor-btn"
-          >Kwork</a>
+            >Kwork</a
+          >
         </p>
       </div>
     </div>
@@ -47,14 +54,14 @@ export default {
 
     clickNav() {
       return this.$store.getters.getClickNavMenu;
-    }
+    },
   },
   watch: {
-    clickNav: function(clickMenuNav) {
+    clickNav: function (clickMenuNav) {
       if (clickMenuNav) {
         this.leave();
       }
-    }
+    },
   },
   methods: {
     animElems() {
@@ -68,7 +75,7 @@ export default {
       TweenMax.set([text, form, social], {
         autoAlpha: 0,
         scale: 0.95,
-        yPercent: 2
+        yPercent: 2,
       });
 
       tl.staggerFromTo(
@@ -84,7 +91,7 @@ export default {
         {
           autoAlpha: 1,
           yPercent: 0,
-          scale: 1
+          scale: 1,
         },
         0.3,
         1
@@ -109,10 +116,10 @@ export default {
       // const svg = document.querySelectorAll(".contacts__chat");
 
       tl.to([title, text, form, social], 0.5, {
-        autoAlpha: 0
+        autoAlpha: 0,
       });
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -123,6 +130,7 @@ export default {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
+  font-family: $mainFontBold;
   @include lg {
     flex-direction: column;
   }
@@ -177,8 +185,6 @@ export default {
   &__fb {
     color: var(--main-red);
     text-transform: uppercase;
-    font-weight: bold;
-    font-family: "PlayfairDisplayBold";
     font-size: 18px;
   }
 }

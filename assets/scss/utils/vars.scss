@@ -11,7 +11,7 @@
 }
 
 html[data-theme="light"] {
-  --bg-color: #e9e9e;
+  --bg-color: #e9e9e9;
   --bg-color-rgba: rgba(233, 233, 233, 0.9);
   --home-color-text: #333;
   --white: #202020;
@@ -24,6 +24,7 @@ html[data-theme="light"] {
 
 // Font
 $mainFont: "PlayfairDisplayRegular", Helvetica, Arial, sans-serif;
+$mainFontBold: "PlayfairDisplayBold", Helvetica, Arial, sans-serif;
 
 // Size
 $mainFontColor: #101010;

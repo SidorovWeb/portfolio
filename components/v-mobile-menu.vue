@@ -4,11 +4,13 @@
     <v-hamburger />
     <div class="mmenu__wrapper">
       <ul class="mmenu__list">
-        <li v-for="(item, i) in this.$t('nav')" :key="item.i" class="mmenu__item">
+        <li
+          v-for="(item, i) in this.$t('nav')"
+          :key="item.i"
+          class="mmenu__item"
+        >
           <a class="mmenu__link" href="#" @click.prevent="scrollTo(i)">
-            {{
-            item
-            }}
+            {{ item }}
           </a>
         </li>
       </ul>
@@ -19,7 +21,7 @@
 </template>
 
 <script>
-import { TimelineMax, TweenMax, Power0 } from "gsap";
+import { TimelineMax, TweenMax } from "gsap";
 import ScrollToPlugin from "gsap/umd/ScrollToPlugin.js";
 
 export default {

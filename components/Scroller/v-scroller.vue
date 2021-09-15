@@ -11,7 +11,7 @@
       >
         <picture>
           <source :srcset="post.webp" type="image/webp" />
-          <img :src="post.img" :alt="post.title" />
+          <img :src="post.img" :alt="post.title" decoding="async" />
         </picture>
       </div>
     </div>
@@ -21,7 +21,7 @@
 <script>
 import { mapState, mapGetters } from "vuex";
 import Parallax from "parallax-js";
-import { TimelineMax } from "gsap";
+import { TimelineMax, TweenMax } from "gsap";
 import vScrollerItem from "@/components/Scroller/Scroller-item/v-scroller-Item.vue";
 
 export default {
@@ -68,20 +68,16 @@ export default {
         autoAlpha: 0,
         y: 30,
         x: 10,
-        scale: 0.9,
+        scale: 0.9
       });
 
-      tl.to(
-        elems,
-        1.5,
-        {
-          y: 0,
-          x: 0,
-          autoAlpha: 1,
-          scale: 1,
-          delay: 1.5,
-        }
-      );
+      tl.to(elems, 1.5, {
+        y: 0,
+        x: 0,
+        autoAlpha: 1,
+        scale: 1,
+        delay: 1.5
+      });
     },
 
     setDataattrForElems() {
@@ -102,8 +98,12 @@ export default {
         e.setAttribute("data-depth", array[i]);
       });
 
+      if (this.getMobile) {
+        return;
+      }
+
       const scene = document.getElementById("scene");
-      const parallaxInstance = new Parallax(scene);
+      new Parallax(scene);
     }
   }
 };

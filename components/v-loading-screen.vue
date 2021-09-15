@@ -81,6 +81,7 @@ export default {
 </script>
 
 <style lang="scss">
+@import "@/assets/scss/utils/vars";
 @import "@/assets/scss/mixins/mixins";
 .v-loading-screen {
   height: 100vh;
@@ -91,6 +92,7 @@ export default {
   align-items: center;
   background-color: var(--bg-color-rgba);
   overflow: hidden;
+  font-family: $mainFontBold;
 
   @include lg {
     background-color: transparent;
