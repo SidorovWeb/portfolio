@@ -1,13 +1,14 @@
+@use 'sass:math';
 $max-breakpoint: 1600;
 $wide-screen: "(min-width: #{$max-breakpoint}px)";
 
 @function get-vw($target) {
-  $vw-context: ($max-breakpoint * .01) * 1px;
+  $vw-context: ($max-breakpoint * 0.01) * 1px;
   @return ($target/$vw-context) * 1vw;
 }
 
 @mixin not-last {
-  &>* {
+  & > * {
     &:not(:last-child) {
       @content;
     }
@@ -16,27 +17,27 @@ $wide-screen: "(min-width: #{$max-breakpoint}px)";
 
 @mixin placeholder {
   ::-webkit-input-placeholder {
-    @content
+    @content;
   }
 
   :-moz-placeholder {
-    @content
+    @content;
   }
 
   ::-moz-placeholder {
-    @content
+    @content;
   }
 
   :-ms-input-placeholder {
-    @content
+    @content;
   }
 }
 
 // fluidFontSize
 
 @function strip-unit($number) {
-  @if type-of($number)=='number'and not unitless($number) {
-    @return $number / ($number * 0 + 1);
+  @if type-of($number) == "number" and not unitless($number) {
+    @return math.div($number, $number * 0 + 1);
   }
 
   @return $number;
@@ -48,7 +49,7 @@ $wide-screen: "(min-width: #{$max-breakpoint}px)";
   $w-min: strip-unit($w-min);
   $w-max: strip-unit($w-max);
 
-  $k: ($f-max - $f-min)/($w-max - $w-min);
+  $k: math.div($f-max - $f-min, $w-max - $w-min);
   $b: $f-min - $k * $w-min;
 
   $b: $b + $units;
@@ -57,7 +58,6 @@ $wide-screen: "(min-width: #{$max-breakpoint}px)";
 }
 
 @mixin fluidFontSize($f-min, $f-max, $w-min, $w-max, $fallback: false) {
-
   font-size: $f-min;
 
   @media (min-width: $w-min) {
@@ -76,7 +76,6 @@ $wide-screen: "(min-width: #{$max-breakpoint}px)";
 // .fluid-font-size {
 // 	@include fluidFontSize(16px, 24px, 480px, 1280px, 18px);
 // }
-
 
 //  ≥ 1400px
 @mixin mxl {
@@ -130,7 +129,7 @@ $wide-screen: "(min-width: #{$max-breakpoint}px)";
   }
 }
 
-// ≥ 0 
+// ≥ 0
 @mixin xs {
   @media only screen and (max-width: 0) {
     @content;

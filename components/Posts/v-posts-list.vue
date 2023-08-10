@@ -61,7 +61,8 @@ export default {
       options: [
         { name: "Все", value: "all" },
         { name: "Верстка", value: "html" },
-        { name: "Vue js", value: "vue js" }
+        { name: "Vue js", value: "vue js" },
+        { name: "React js", value: "React" }
       ],
       selected: "Все",
       sortedProducts: []

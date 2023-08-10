@@ -25,6 +25,7 @@
           <li class="skills__item">SCSS</li>
           <li class="skills__item">less</li>
           <li class="skills__item">Bootstrap</li>
+          <li class="skills__item">Tailwind CSS</li>
         </ul>
       </div>
       <div class="skills__tag">
@@ -33,7 +34,8 @@
         </p>
         <ul class="skills__list">
           <li class="skills__item">jQuery</li>
-          <li class="skills__item">Vue.js</li>
+          <li class="skills__item">Vue js</li>
+          <li class="skills__item">React js</li>
         </ul>
       </div>
       <div class="skills__tag">
@@ -83,14 +85,14 @@ export default {
   computed: {
     clickNav() {
       return this.$store.getters.getClickNavMenu;
-    },
+    }
   },
   watch: {
-    clickNav: function (clickMenuNav) {
+    clickNav: function(clickMenuNav) {
       if (clickMenuNav) {
         this.leave();
       }
-    },
+    }
   },
   methods: {
     animElems() {
@@ -102,7 +104,7 @@ export default {
       TweenMax.set(skillsLine, {
         autoAlpha: 0,
         scale: 0.95,
-        yPercent: 2,
+        yPercent: 2
       });
 
       tl.staggerFromTo(
@@ -118,7 +120,7 @@ export default {
         {
           autoAlpha: 1,
           yPercent: 0,
-          scale: 1,
+          scale: 1
         },
         0.15,
         1
@@ -147,10 +149,10 @@ export default {
       // const svg = document.querySelector(".skills__svg");
 
       tl.to([title, skillsLine], 0.5, {
-        autoAlpha: 0,
+        autoAlpha: 0
       });
-    },
-  },
+    }
+  }
 };
 </script>
 

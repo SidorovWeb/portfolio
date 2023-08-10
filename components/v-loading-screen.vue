@@ -90,7 +90,7 @@ export default {
   z-index: 998;
   display: flex;
   align-items: center;
-  background-color: var(--bg-color-rgba);
+  // background-color: var(--bg-color-rgba);
   overflow: hidden;
   font-family: $mainFontBold;
 

@@ -2,7 +2,7 @@
   <div class="main-scroller v-scroller" v-if="!screen">
     <!-- ScrollerItem -->
     <v-scroller-Item />
-    <div v-if="getDesktop" class="parallax" id="scene">
+    <!-- <div v-if="getDesktop" class="parallax" id="scene">
       <div
         class="parallax__element"
         v-for="(post, index) in postsLoaded"
@@ -14,14 +14,15 @@
           <img :src="post.img" :alt="post.title" decoding="async" />
         </picture>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
 <script>
-import { mapState, mapGetters } from "vuex";
-import Parallax from "parallax-js";
-import { TimelineMax, TweenMax } from "gsap";
+import { mapState } from "vuex";
+// import { mapState, mapGetters } from "vuex";
+// import Parallax from "parallax-js";
+// import { TimelineMax } from "gsap";
 import vScrollerItem from "@/components/Scroller/Scroller-item/v-scroller-Item.vue";
 
 export default {
@@ -32,80 +33,75 @@ export default {
       done: false
     };
   },
-  mounted() {
-    this.animElems();
-  },
+  // mounted() {
+  //   this.animElems();
+  // },
   computed: {
-    ...mapState(["screen"]),
-    ...mapGetters(["getPostsLoaded", "getMobile", "getDesktop"]),
+    ...mapState(["screen"])
+    // ...mapGetters(["getPostsLoaded", "getMobile", "getDesktop"])
 
-    postsLoaded() {
-      const posts = this.getPostsLoaded;
-      const sortingPosts = [...posts].sort(() => Math.random() - 0.5);
-      const newArray = [];
+    // postsLoaded() {
+    //   const posts = this.getPostsLoaded;
+    //   const sortingPosts = [...posts].sort(() => Math.random() - 0.5);
+    //   const newArray = [];
 
-      for (let i = 0; i < 10; i++) {
-        newArray.push(sortingPosts[i]);
-      }
+    //   for (let i = 0; i < 10; i++) {
+    //     newArray.push(sortingPosts[i]);
+    //   }
 
-      return newArray;
-    }
-  },
-  watch: {
-    getDesktop: function(boolean) {
-      if (boolean) {
-        this.animElems();
-      }
-    }
-  },
-  methods: {
-    animElems() {
-      const self = this;
-      let tl = new TimelineMax({ onComplete: self.setDataattrForElems });
-      const elems = document.querySelectorAll(".parallax__element");
-
-      TweenMax.set(elems, {
-        autoAlpha: 0,
-        y: 30,
-        x: 10,
-        scale: 0.9
-      });
-
-      tl.to(elems, 1.5, {
-        y: 0,
-        x: 0,
-        autoAlpha: 1,
-        scale: 1,
-        delay: 1.5
-      });
-    },
-
-    setDataattrForElems() {
-      const array = [
-        "-0.3",
-        "0.1",
-        "-0.1",
-        "0.2",
-        "0.1",
-        "0.2",
-        "0.05",
-        "-0.3",
-        "-0.1",
-        "0.1"
-      ];
-      const elems = document.querySelectorAll(".parallax__element");
-      elems.forEach((e, i) => {
-        e.setAttribute("data-depth", array[i]);
-      });
-
-      if (this.getMobile) {
-        return;
-      }
-
-      const scene = document.getElementById("scene");
-      new Parallax(scene);
-    }
+    //   return newArray;
+    // }
   }
+  // watch: {
+  //   getDesktop: function(boolean) {
+  //     if (boolean) {
+  //       this.animElems();
+  //     }
+  //   }
+  // },
+  // methods: {
+  // animElems() {
+  //   const self = this;
+  //   let tl = new TimelineMax({ onComplete: self.setDataattrForElems });
+  //   const elems = document.querySelectorAll(".parallax__element");
+  //   tl.set(elems, {
+  //     autoAlpha: 0,
+  //     y: 30,
+  //     x: 10,
+  //     scale: 0.9
+  //   });
+  //   tl.to(elems, 1.5, {
+  //     y: 0,
+  //     x: 0,
+  //     autoAlpha: 1,
+  //     scale: 1,
+  //     delay: 1.5
+  //   });
+  // }
+  // setDataattrForElems() {
+  //   const array = [
+  //     "-0.3",
+  //     "0.1",
+  //     "-0.1",
+  //     "0.2",
+  //     "0.1",
+  //     "0.2",
+  //     "0.05",
+  //     "-0.3",
+  //     "-0.1",
+  //     "0.1"
+  //   ];
+  //   const elems = document.querySelectorAll(".parallax__element");
+  //   elems.forEach((e, i) => {
+  //     e.setAttribute("data-depth", array[i]);
+  //   });
+  //   if (this.getMobile) {
+  //     return;
+  //   }
+  //   const scene = document.getElementById("scene");
+  //   new Parallax(scene);
+  // }
+  // }
 };
 </script>
 
@@ -119,7 +115,7 @@ export default {
   width: 100%;
   height: 100vh;
   z-index: -1;
-
+  filter: blur(4px);
   pointer-events: none;
 
   &::before {
@@ -138,6 +134,8 @@ export default {
   &__element {
     position: absolute !important;
     pointer-events: none;
+    border-radius: 10px;
+    overflow: hidden;
 
     &--0 {
       top: 8% !important;
@@ -147,8 +145,8 @@ export default {
     }
     &--1 {
       top: 36% !important;
-      left: 45% !important;
-      width: 12vw;
+      left: 50% !important;
+      width: 22vw;
     }
     &--2 {
       top: 70% !important;
@@ -158,7 +156,7 @@ export default {
     }
     &--3 {
       top: 41% !important;
-      left: 71% !important;
+      left: 81% !important;
       width: 20vw;
     }
     &--4 {
